@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AccountingSoftware.UserAuthentication" 
+             BackgroundColor="#303F9F"
+             Title="">
+
+    <Grid VerticalOptions="CenterAndExpand" Padding="30">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Entry Grid.Row="1" x:Name="UsernameEntry" Placeholder="Username" FontSize="Medium" FontFamily="Segoe UI" PlaceholderColor="#FFFFFF" BackgroundColor="Transparent" TextColor="#FFFFFF" />
+        <Entry Grid.Row="2" x:Name="PasswordEntry" Placeholder="Password" FontSize="Medium" FontFamily="Segoe UI" PlaceholderColor="#FFFFFF" BackgroundColor="Transparent" TextColor="#FFFFFF" IsPassword="True" />
+        <Button Grid.Row="3" x:Name="LoginButton" Text="Login" Clicked="LoginButton_Clicked" FontSize="Medium" FontFamily="Segoe UI" BackgroundColor="#FFFFFF" TextColor="#FFFFFF" CornerRadius="10" HeightRequest="50" Margin="0,20,0,0" />
+    </Grid>
+
+</ContentPage>
