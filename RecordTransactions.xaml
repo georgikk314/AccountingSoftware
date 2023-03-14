@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AccountingSoftware.RecordTransactions"
+             Title=""
+             BackgroundColor="#FFFFFF">
+    <StackLayout Margin="20">
+        <Label Text="New Transaction" FontSize="Large" HorizontalOptions="CenterAndExpand" Margin="0,0,0,30"/>
+        <StackLayout Orientation="Horizontal" Margin="0,0,0,30">
+            <Label Text="Transaction Type:" FontSize="Medium" VerticalOptions="CenterAndExpand" WidthRequest="200"/>
+            <Picker x:Name="TransactionTypePicker" VerticalOptions="Center" BackgroundColor="Blue" WidthRequest="150">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Expense</x:String>
+                        <x:String>Income</x:String>
+                        <x:String>Transfer</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal" Margin="0,0,0,30">
+            <Label Text="Amount:" FontSize="Medium" VerticalOptions="CenterAndExpand" WidthRequest="120"/>
+            <Entry x:Name="AmountEntry" Placeholder="Enter amount" Keyboard="Numeric" VerticalOptions="CenterAndExpand"/>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal" Margin="0,0,0,30">
+            <Label Text="Category:" FontSize="Medium" VerticalOptions="CenterAndExpand" WidthRequest="120"/>
+            <Picker x:Name="CategoryPicker" Title="" VerticalOptions="Center"
+                    BackgroundColor="Blue" WidthRequest="200">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Office Expenses</x:String>
+                        <x:String>Advertising</x:String>
+                        <x:String>Rent</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal" Margin="0,0,0,30">
+            <Label Text="Date:" FontSize="Medium" VerticalOptions="CenterAndExpand" WidthRequest="120"/>
+            <DatePicker x:Name="TransactionDatePicker" VerticalOptions="Center"/>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal" Margin="0,0,0,30">
+            <Label Text="Description:" FontSize="Medium" VerticalOptions="Start" WidthRequest="200"/>
+            <Editor x:Name="DescriptionEntry" Placeholder="Enter description" VerticalOptions="CenterAndExpand" AutoSize="TextChanges" WidthRequest="700" HeightRequest="200"/>
+        </StackLayout>
+        <Button Text="Save Transaction" FontSize="Large" HorizontalOptions="CenterAndExpand" Clicked="OnSaveTransactionClicked"/>
+    </StackLayout>
+
+</ContentPage>
