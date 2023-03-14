@@ -8,7 +8,7 @@
 
     <ShellContent
         Title="Home"
-        ContentTemplate="{DataTemplate local:GenerateFinancialReports}"
+        ContentTemplate="{DataTemplate local:ClientManagement}"
         Route="MainPage" />
 
 </Shell>
