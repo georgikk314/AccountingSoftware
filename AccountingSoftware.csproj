@@ -49,6 +49,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="GenerateFinancialReports.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="RecordTransactions.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AccountingSoftware.GenerateFinancialReports"
+             Title="">
+    <StackLayout Margin="20">
+        <Label Text="Generate Financial Reports" FontSize="Large" HorizontalOptions="CenterAndExpand" Margin="0,0,0,20"/>
+        <StackLayout Orientation="Horizontal" Margin="0,0,0,20">
+            <Label Text="Start Date:" FontSize="Medium" VerticalOptions="Center"/>
+            <DatePicker x:Name="StartDatePicker" VerticalOptions="Center"/>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal" Margin="0,0,0,20">
+            <Label Text="End Date:" FontSize="Medium" VerticalOptions="Center"/>
+            <DatePicker x:Name="EndDatePicker" VerticalOptions="Center"/>
+        </StackLayout>
+        <StackLayout>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Text="Select Report Type:" Grid.Row="0" Grid.Column="0" FontSize="Medium" VerticalOptions="Center"/>
+                <Picker x:Name="ReportTypePicker" Grid.Row="0" Grid.Column="1" VerticalOptions="StartAndExpand">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Income Statement</x:String>
+                            <x:String>Balance Sheet</x:String>
+                            <x:String>Cash Flow Statement</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+            </Grid>
+        </StackLayout>
+    <Button Text="Generate Report" FontSize="Large" HorizontalOptions="CenterAndExpand" Clicked="OnGenerateReportClicked"/>
+        <Button Text="Download PDF" FontSize="Large" HorizontalOptions="CenterAndExpand" Clicked="OnDownloadPDFClicked"/>
+    </StackLayout>
+</ContentPage>
