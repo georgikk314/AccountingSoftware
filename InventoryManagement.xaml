@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AccountingSoftware.InventoryManagement"
+             Title="">
+    <StackLayout Margin="20">
+        <Label Text="Manage Inventory" FontSize="Large" HorizontalOptions="CenterAndExpand" Margin="0,0,0,20"/>
+
+        <!-- Search Bar -->
+        <SearchBar Placeholder="Search items" Margin="0,0,0,20" />
+
+        <!-- Items List -->
+        <CollectionView ItemsSource="{Binding Items}" SelectionMode="Single" Margin="0,0,0,20">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <Label Grid.Row="0" Grid.Column="0" Text="{Binding Name}" FontAttributes="Bold" />
+                        <Label Grid.Row="1" Grid.Column="0" Text="{Binding Description}" />
+
+                        <StackLayout Grid.Row="0" Grid.Column="1" VerticalOptions="CenterAndExpand">
+                            <Label Text="Quantity" FontSize="Medium" />
+                            <Label Text="{Binding Quantity}" FontSize="Large" />
+                        </StackLayout>
+
+                        <StackLayout Grid.Row="1" Grid.Column="1" VerticalOptions="CenterAndExpand">
+                            <Label Text="Price" FontSize="Medium" />
+                            <Label Text="{Binding Price, StringFormat='${0:N2}'}" FontSize="Large" />
+                        </StackLayout>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- Add Item Button -->
+        <Button Text="Add Item" FontSize="Large" HorizontalOptions="CenterAndExpand" Clicked="OnAddItemClicked"/>
+
+        <!-- Download PDF Button -->
+        <Button Text="Download PDF Report" FontSize="Large" HorizontalOptions="CenterAndExpand" Clicked="OnDownloadPdfClicked"/>
+    </StackLayout>
+</ContentPage>
