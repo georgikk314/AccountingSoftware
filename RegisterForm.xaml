@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AccountingSoftware.RegisterForm"
+             Title="">
+    <StackLayout Margin="20">
+        <Label Text="Accountant Registration" FontSize="Large" HorizontalOptions="CenterAndExpand" Margin="0,0,0,20"/>
+        <StackLayout Orientation="Horizontal" Margin="0,0,0,20">
+            <Label Text="Name:" FontSize="Medium" VerticalOptions="Center"/>
+            <Entry x:Name="NameEntry" Placeholder="Enter your name" VerticalOptions="CenterAndExpand"/>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal" Margin="0,0,0,20">
+            <Label Text="Second Name:" FontSize="Medium" VerticalOptions="Center"/>
+            <Entry x:Name="SecondNameEntry" Placeholder="Enter your second name" VerticalOptions="CenterAndExpand"/>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal" Margin="0,0,0,20">
+            <Label Text="Last Name:" FontSize="Medium" VerticalOptions="Center"/>
+            <Entry x:Name="LastNameEntry" Placeholder="Enter your last name" VerticalOptions="CenterAndExpand"/>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal" Margin="0,0,0,20">
+            <Label Text="Email Address:" FontSize="Medium" VerticalOptions="Center"/>
+            <Entry x:Name="EmailEntry" Placeholder="Enter your email address" Keyboard="Email" VerticalOptions="CenterAndExpand"/>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal" Margin="0,0,0,20">
+            <Label Text="Username:" FontSize="Medium" VerticalOptions="Center"/>
+            <Entry x:Name="UsernameEntry" Placeholder="Enter your username" VerticalOptions="CenterAndExpand"/>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal" Margin="0,0,0,20">
+            <Label Text="Password:" FontSize="Medium" VerticalOptions="Center"/>
+            <Entry x:Name="PasswordEntry" Placeholder="Enter your password" IsPassword="True" VerticalOptions="CenterAndExpand"/>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal" Margin="0,0,0,20">
+            <Label Text="Confirm Password:" FontSize="Medium" VerticalOptions="Center"/>
+            <Entry x:Name="ConfirmPasswordEntry" Placeholder="Re-enter your password" IsPassword="True" VerticalOptions="CenterAndExpand"/>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal" Margin="0,0,0,20">
+            <Label Text="Company Name:" FontSize="Medium" VerticalOptions="Center"/>
+            <Entry x:Name="CompanyNameEntry" Placeholder="Enter your company name" VerticalOptions="CenterAndExpand"/>
+        </StackLayout>
+        <Button Text="Register" FontSize="Large" HorizontalOptions="CenterAndExpand" Clicked="OnRegisterClicked"/>
+    </StackLayout>
+</ContentPage>
