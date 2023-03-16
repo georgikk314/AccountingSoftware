@@ -11,4 +11,12 @@ public partial class RegisterForm : ContentPage
     {
         //TODO:
     }
+
+    private async void OnLoginClicked(object sender, EventArgs e)
+    {
+        //needs optimising for memory leaks (1MB added when changing windows)
+        await Navigation.PushAsync(new UserAuthentication());
+
+        GC.Collect(); //optimised 10MB memory leak
+    }
 }
