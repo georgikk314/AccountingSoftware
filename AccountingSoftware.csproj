@@ -57,6 +57,9 @@
 	  <MauiXaml Update="ClientManagement.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Dashboard.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="GenerateFinancialReports.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

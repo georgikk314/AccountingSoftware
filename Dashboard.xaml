@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AccountingSoftware.Dashboard"
+             Title="">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Label Text="Financial Overview" FontSize="Large" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center" />
+
+        <Label Text="Account Balance:" FontSize="Medium" Grid.Row="1" Grid.Column="0" Margin="10" />
+        <Label Text="{Binding AccountBalance}" FontSize="Medium" Grid.Row="1" Grid.Column="1" Margin="10" />
+
+        <Label Text="Total Sales:" FontSize="Medium" Grid.Row="2" Grid.Column="0" Margin="10" />
+        <Label Text="{Binding TotalSales}" FontSize="Medium" Grid.Row="2" Grid.Column="1" Margin="10" />
+
+        <Label Text="Total Expenses:" FontSize="Medium" Grid.Row="3" Grid.Column="0" Margin="10" />
+        <Label Text="{Binding TotalExpenses}" FontSize="Medium" Grid.Row="3" Grid.Column="1" Margin="10" />
+
+        <Label Text="Profit:" FontSize="Medium" Grid.Row="4" Grid.Column="0" Margin="10" />
+        <Label Text="{Binding Profit}" FontSize="Medium" Grid.Row="4" Grid.Column="1" Margin="10" />
+    </Grid>
+
+</ContentPage>
