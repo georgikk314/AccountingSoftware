@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AccountingSoftware.Invoices"
+             Title="">
+    <StackLayout>
+        <Label Text="Product or Service Description:" />
+        <Entry x:Name="DescriptionEntry" />
+
+        <Label Text="Price:" />
+        <Entry x:Name="PriceEntry" Keyboard="Numeric" />
+
+        <Label Text="Payment Terms:" />
+        <Entry x:Name="PaymentTermsEntry" />
+
+        <Button Text="Generate Invoice" Clicked="OnGenerateInvoiceClicked" />
+    </StackLayout>
+</ContentPage>
