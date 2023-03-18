@@ -7,5 +7,8 @@ public partial class Invoices : ContentPage
 		InitializeComponent();
 	}
 
-	// TODO
+	private void OnGenerateInvoiceClicked(object sender, EventArgs e)
+	{
+		//TODO:
+	}
 }

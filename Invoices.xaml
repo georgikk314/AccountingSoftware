@@ -5,14 +5,20 @@
              Title="">
     <StackLayout>
         <Label Text="Product or Service Description:" />
-        <Entry x:Name="DescriptionEntry" />
+        <Editor x:Name="DescriptionEntry" HeightRequest="100" 
+               WidthRequest="500"
+               HorizontalOptions="Start"
+               CursorPosition="0"
+          Margin="0,0,0,20" />
 
         <Label Text="Price:" />
-        <Entry x:Name="PriceEntry" Keyboard="Numeric" />
+        <Entry x:Name="PriceEntry" WidthRequest="200"
+               HorizontalOptions="Start"
+               Keyboard="Numeric" Margin="0,0,0,20" />
 
         <Label Text="Payment Terms:" />
-        <Entry x:Name="PaymentTermsEntry" />
+        <Entry x:Name="PaymentTermsEntry" Margin="0,0,0,20" />
 
-        <Button Text="Generate Invoice" Clicked="OnGenerateInvoiceClicked" />
+        <Button Text="Generate Invoice" Clicked="OnGenerateInvoiceClicked" WidthRequest="200" Margin="0,0,0,20"/>
     </StackLayout>
 </ContentPage>

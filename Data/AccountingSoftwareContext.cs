@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AccountingSoftware.Data.Tables;
 using Microsoft.EntityFrameworkCore;
 
 namespace AccountingSoftware.Data
@@ -24,5 +25,12 @@ namespace AccountingSoftware.Data
                 .UseSqlite($"Filename={dbPath}");
         }
         
+        public DbSet<Users> Users { get; set; }
+        public DbSet<Customers> Customers { get; set; }
+        public DbSet<Vendors> Vendors { get; set; }
+        public DbSet<Transactions> Transactions { get; set; }
+        public DbSet<AccountsPayable> AccountsPayable { get; set;}
+        public DbSet<AccountsReceivable> accountsReceivables { get; set; }
+        public DbSet<Inventory> Inventory { get; set; }
     }
 }
