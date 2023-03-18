@@ -30,7 +30,8 @@ namespace AccountingSoftware.Data
         public DbSet<Vendors> Vendors { get; set; }
         public DbSet<Transactions> Transactions { get; set; }
         public DbSet<AccountsPayable> AccountsPayable { get; set;}
-        public DbSet<AccountsReceivable> accountsReceivables { get; set; }
+        public DbSet<AccountsReceivable> AccountsReceivables { get; set; }
         public DbSet<Inventory> Inventory { get; set; }
+        public DbSet<FinancialReports> FinancialReports { get; set; }
     }
 }
