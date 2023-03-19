@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ namespace AccountingSoftware.Data.Tables
 {
     public class AccountsPayable
     {
+        [Key]
         public int AccountPayableId { get; set; }
         public int VendorId { get; set; }
         public int TransactionId { get; set; }

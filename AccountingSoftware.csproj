@@ -51,6 +51,7 @@
 	<ItemGroup>
 	  <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.15" />
 	  <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.15" />
+	  <PackageReference Include="XAct.Core.PCL" Version="0.0.5014" />
 	</ItemGroup>
 
 	<ItemGroup>

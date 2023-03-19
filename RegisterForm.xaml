@@ -6,16 +6,16 @@
     <StackLayout Margin="20">
         <Label Text="Accountant Registration" FontSize="Large" HorizontalOptions="CenterAndExpand" Margin="0,0,0,20"/>
         <StackLayout Orientation="Horizontal" Margin="0,0,0,20">
-            <Label Text="Name:" FontSize="Medium" VerticalOptions="Center"/>
-            <Entry x:Name="NameEntry" Placeholder="Enter your name" VerticalOptions="CenterAndExpand"/>
+            <Label Text="First Name:" FontSize="Medium" VerticalOptions="Center"/>
+            <Entry x:Name="FirstNameEntry" Text="{Binding FirstName}" Placeholder="Enter your first name" VerticalOptions="CenterAndExpand"/>
         </StackLayout>
         <StackLayout Orientation="Horizontal" Margin="0,0,0,20">
             <Label Text="Second Name:" FontSize="Medium" VerticalOptions="Center"/>
-            <Entry x:Name="SecondNameEntry" Placeholder="Enter your second name" VerticalOptions="CenterAndExpand"/>
+            <Entry x:Name="SecondNameEntry" Text="{Binding SecondName}" Placeholder="Enter your second name" VerticalOptions="CenterAndExpand"/>
         </StackLayout>
         <StackLayout Orientation="Horizontal" Margin="0,0,0,20">
             <Label Text="Last Name:" FontSize="Medium" VerticalOptions="Center"/>
-            <Entry x:Name="LastNameEntry" Placeholder="Enter your last name" VerticalOptions="CenterAndExpand"/>
+            <Entry x:Name="LastNameEntry" Text="{Binding LastName}" Placeholder="Enter your last name" VerticalOptions="CenterAndExpand"/>
         </StackLayout>
         <StackLayout Orientation="Horizontal" Margin="0,0,0,20">
             <Label Text="Email Address:" FontSize="Medium" VerticalOptions="Center"/>
@@ -23,19 +23,25 @@
         </StackLayout>
         <StackLayout Orientation="Horizontal" Margin="0,0,0,20">
             <Label Text="Username:" FontSize="Medium" VerticalOptions="Center"/>
-            <Entry x:Name="UsernameEntry" Placeholder="Enter your username" VerticalOptions="CenterAndExpand"/>
+            <Entry x:Name="UsernameEntry" Text="{Binding Username}" Placeholder="Enter your username" VerticalOptions="CenterAndExpand"/>
         </StackLayout>
         <StackLayout Orientation="Horizontal" Margin="0,0,0,20">
             <Label Text="Password:" FontSize="Medium" VerticalOptions="Center"/>
-            <Entry x:Name="PasswordEntry" Placeholder="Enter your password" IsPassword="True" VerticalOptions="CenterAndExpand"/>
+            <Entry x:Name="PasswordEntry" Text="{Binding PasswordHash}" Placeholder="Enter your password" IsPassword="True" VerticalOptions="CenterAndExpand"/>
         </StackLayout>
         <StackLayout Orientation="Horizontal" Margin="0,0,0,20">
             <Label Text="Confirm Password:" FontSize="Medium" VerticalOptions="Center"/>
             <Entry x:Name="ConfirmPasswordEntry" Placeholder="Re-enter your password" IsPassword="True" VerticalOptions="CenterAndExpand"/>
         </StackLayout>
+        <!--
         <StackLayout Orientation="Horizontal" Margin="0,0,0,20">
             <Label Text="Company Name:" FontSize="Medium" VerticalOptions="Center"/>
             <Entry x:Name="CompanyNameEntry" Placeholder="Enter your company name" VerticalOptions="CenterAndExpand"/>
+        </StackLayout>
+        -->
+        <StackLayout>
+            <Label x:Name="ErrorMessageForInvalidEntries" Text="You have missing fields or entered a invalid username. The username should start with a alphabetical symbol!" TextColor="Red" IsVisible="false"></Label>
+            <Label x:Name="ErrorMessageForNotMatchingPasswords" Text="Your password does not match with the confirm password!" TextColor="Red" IsVisible="false"></Label>
         </StackLayout>
         <StackLayout>
             <Label Text="Already have an account? Login here." FontSize="Small" TextColor="Blue" VerticalOptions="End" HorizontalOptions="End" Margin="0,0,20,20">
@@ -44,6 +50,6 @@
                 </Label.GestureRecognizers>
             </Label>
         </StackLayout>
-        <Button Text="Register" FontSize="Large" HorizontalOptions="CenterAndExpand" Clicked="OnRegisterClicked"/>
+        <Button Text="Register" FontSize="Large" HorizontalOptions="CenterAndExpand" Command="{Binding OnRegisterClicked}"/>
     </StackLayout>
 </ContentPage>

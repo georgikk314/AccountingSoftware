@@ -24,7 +24,7 @@ namespace AccountingSoftware.ViewModels
             _dbContext = dbContext;
         }
 
-        public ICommand SaveCommand => new Command(async () =>
+        public ICommand OnRegisterClicked => new Command(async () =>
         {
             _dbContext.Add(new Users()
             {
