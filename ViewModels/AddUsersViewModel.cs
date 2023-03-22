@@ -18,11 +18,13 @@ namespace AccountingSoftware.ViewModels
         public string PasswordEntry { get; set; }
         public string PasswordHash { get; set; }
         public string ConfirmPasswordEntry { get; set; }
+        public string Email { get; set; }
         public string FirstName { get; set; }
         public string SecondName { get; set; }
         public string LastName { get; set; }
         public bool IsInvalidEntriesMessageVisible { get; set; }
         public bool IsNotMatchingPasswordsMessageVisible { get; set; }
+        public bool IsNotCorrectEmailMessageVisible { get; set; }
 
         private readonly AccountingSoftwareContext _dbContext;
 
@@ -34,25 +36,13 @@ namespace AccountingSoftware.ViewModels
         public ICommand OnRegisterClicked => new Command(async () =>
         {
             RegisterFormValidation.Validation(_dbContext, this);
-
-            /*
-            _dbContext.Add(new Users()
-            {
-                Username = Username,
-                PasswordHash = PasswordEntry,
-                FirstName = FirstName,
-                SecondName = SecondName,
-                LastName = LastName
-            });
-            */
-            
-            //IsInvalidEntriesMessageVisible = true;
-            
+    
             await _dbContext.SaveChangesAsync();
 
             Username = null;
             PasswordEntry = null;
             PasswordHash = null;
+            Email = null;
             ConfirmPasswordEntry = null;
             FirstName = null;
             SecondName = null;

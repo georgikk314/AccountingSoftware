@@ -8,6 +8,7 @@ using System.Dynamic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using XAct.Users;
 using XSystem.Security.Cryptography;
@@ -19,17 +20,15 @@ namespace AccountingSoftware.Validations
         
         public static void Validation(AccountingSoftwareContext dbContext, AddUsersViewModel model)
         {
-            /*var md5 = new MD5CryptoServiceProvider();
-            byte[] Password = Encoding.ASCII.GetBytes(model.PasswordHash);
-            model.PasswordHash = Convert.ToBase64String(md5.ComputeHash(Password));*/
-
             bool isValid = true;
             model.IsInvalidEntriesMessageVisible = false;
             model.IsNotMatchingPasswordsMessageVisible = false;
+            model.IsNotCorrectEmailMessageVisible = false;
 
             // Check if any required field is empty
             if (string.IsNullOrEmpty(model.Username) || string.IsNullOrEmpty(model.PasswordEntry) || string.IsNullOrEmpty(model.FirstName)
-            || string.IsNullOrEmpty(model.LastName))
+            || string.IsNullOrEmpty(model.LastName)
+            || string.IsNullOrEmpty(model.Email))
             {
                 model.IsInvalidEntriesMessageVisible = true;
                 isValid = false;
@@ -53,16 +52,25 @@ namespace AccountingSoftware.Validations
                 return;
             }
 
+            //Check if email is correct
+            if (!Regex.IsMatch(model.Email, "^[a-zA-Z0-9.!#$%&'*+\\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$"))
+            {
+                model.IsNotCorrectEmailMessageVisible = true;
+                isValid = false;
+                return;
+            }
+
             if (isValid)
             {
                 var md5 = new MD5CryptoServiceProvider();
-                byte[] Password = Encoding.ASCII.GetBytes(model.PasswordHash);
+                byte[] Password = Encoding.ASCII.GetBytes(model.PasswordEntry);
                 model.PasswordHash = Convert.ToBase64String(md5.ComputeHash(Password));
 
                 dbContext.Add(new Users()
                 {
                     Username = model.Username,
                     PasswordHash = model.PasswordHash,
+                    Email = model.Email,
                     FirstName = model.FirstName,
                     SecondName = model.SecondName,
                     LastName = model.LastName

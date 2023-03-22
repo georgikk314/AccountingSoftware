@@ -46,7 +46,6 @@ public partial class RegisterForm : ContentPage
 
     private async void OnLoginClicked(object sender, EventArgs e)
     {
-        //needs optimising for memory leaks (1MB added when changing windows)
         await Navigation.PopAsync();
         UsernameEntry.Text = null;
         PasswordEntry.Text = null;

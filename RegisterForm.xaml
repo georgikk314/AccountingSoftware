@@ -19,7 +19,7 @@
         </StackLayout>
         <StackLayout Orientation="Horizontal" Margin="0,0,0,20">
             <Label Text="Email Address:" FontSize="Medium" VerticalOptions="Center"/>
-            <Entry x:Name="EmailEntry" Placeholder="Enter your email address" Keyboard="Email" VerticalOptions="CenterAndExpand"/>
+            <Entry x:Name="EmailEntry" Text="{Binding Email}" Placeholder="Enter your email address" Keyboard="Email" VerticalOptions="CenterAndExpand"/>
         </StackLayout>
         <StackLayout Orientation="Horizontal" Margin="0,0,0,20">
             <Label Text="Username:" FontSize="Medium" VerticalOptions="Center"/>
@@ -42,6 +42,7 @@
         <StackLayout>
             <Label x:Name="ErrorMessageForInvalidEntries" x:FieldModifier="Public" Text="You have missing fields or entered a invalid username. The username should start with a alphabetical symbol!" TextColor="Red" IsVisible="{Binding IsInvalidEntriesMessageVisible}"></Label>
             <Label x:Name="ErrorMessageForNotMatchingPasswords" x:FieldModifier="Public" Text="Your password does not match with the confirm password!" TextColor="Red" IsVisible="{Binding IsNotMatchingPasswordsMessageVisible}"></Label>
+            <Label x:Name="ErrorMessageForWrongEmail" Text="You have entered a non existing email adress!" TextColor="Red" IsVisible="{Binding IsNotCorrectEmailMessageVisible}"></Label>
         </StackLayout>
         <StackLayout>
             <Label Text="Already have an account? Login here." FontSize="Small" TextColor="Blue" VerticalOptions="End" HorizontalOptions="End" Margin="0,0,20,20">
