@@ -27,11 +27,11 @@
         </StackLayout>
         <StackLayout Orientation="Horizontal" Margin="0,0,0,20">
             <Label Text="Password:" FontSize="Medium" VerticalOptions="Center"/>
-            <Entry x:Name="PasswordEntry" Text="{Binding PasswordHash}" Placeholder="Enter your password" IsPassword="True" VerticalOptions="CenterAndExpand"/>
+            <Entry x:Name="PasswordEntry" Text="{Binding PasswordEntry}" Placeholder="Enter your password" IsPassword="True" VerticalOptions="CenterAndExpand"/>
         </StackLayout>
         <StackLayout Orientation="Horizontal" Margin="0,0,0,20">
             <Label Text="Confirm Password:" FontSize="Medium" VerticalOptions="Center"/>
-            <Entry x:Name="ConfirmPasswordEntry" Placeholder="Re-enter your password" IsPassword="True" VerticalOptions="CenterAndExpand"/>
+            <Entry x:Name="ConfirmPasswordEntry" Text="{Binding ConfirmPasswordEntry}" Placeholder="Re-enter your password" IsPassword="True" VerticalOptions="CenterAndExpand"/>
         </StackLayout>
         <!--
         <StackLayout Orientation="Horizontal" Margin="0,0,0,20">
@@ -40,8 +40,8 @@
         </StackLayout>
         -->
         <StackLayout>
-            <Label x:Name="ErrorMessageForInvalidEntries" Text="You have missing fields or entered a invalid username. The username should start with a alphabetical symbol!" TextColor="Red" IsVisible="false"></Label>
-            <Label x:Name="ErrorMessageForNotMatchingPasswords" Text="Your password does not match with the confirm password!" TextColor="Red" IsVisible="false"></Label>
+            <Label x:Name="ErrorMessageForInvalidEntries" x:FieldModifier="Public" Text="You have missing fields or entered a invalid username. The username should start with a alphabetical symbol!" TextColor="Red" IsVisible="{Binding IsInvalidEntriesMessageVisible}"></Label>
+            <Label x:Name="ErrorMessageForNotMatchingPasswords" x:FieldModifier="Public" Text="Your password does not match with the confirm password!" TextColor="Red" IsVisible="{Binding IsNotMatchingPasswordsMessageVisible}"></Label>
         </StackLayout>
         <StackLayout>
             <Label Text="Already have an account? Login here." FontSize="Small" TextColor="Blue" VerticalOptions="End" HorizontalOptions="End" Margin="0,0,20,20">

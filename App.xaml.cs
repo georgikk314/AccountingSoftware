@@ -1,4 +1,5 @@
 ﻿using AccountingSoftware.Data;
+using AccountingSoftware.ViewModels;
 
 namespace AccountingSoftware;
 
@@ -8,6 +9,7 @@ public partial class App : Application
 	{
 		InitializeComponent();
 		var dbContext = new AccountingSoftwareContext();
-		MainPage = new NavigationPage(new RegisterForm(dbContext));
+		var model = new AddUsersViewModel(dbContext);
+		MainPage = new NavigationPage(new RegisterForm(dbContext, model));
 	}
 }

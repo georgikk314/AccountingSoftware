@@ -4,63 +4,58 @@ using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Text;
 using XAct;
+using XAct.Users;
 using XSystem.Security.Cryptography;
 
 namespace AccountingSoftware;
 
 public partial class RegisterForm : ContentPage
 {
+
+    private bool _isInvalidEntriesMessageVisible = false;
+    public bool IsInvalidEntriesMessageVisible
+    {
+        get { return _isInvalidEntriesMessageVisible; }
+        set
+        {
+            _isInvalidEntriesMessageVisible = value;
+            OnPropertyChanged(nameof(IsInvalidEntriesMessageVisible));
+        }
+    }
+
+    private bool _isNotMatchingPasswordsMessageVisible = false;
+    public bool IsNotMatchingPasswordsMessageVisible
+    {
+        get { return _isNotMatchingPasswordsMessageVisible; }
+        set
+        {
+            _isNotMatchingPasswordsMessageVisible = value;
+            OnPropertyChanged(nameof(IsNotMatchingPasswordsMessageVisible));
+        }
+    }
+
     private readonly AccountingSoftwareContext _dbContext;
-   // private readonly AddUsersViewModel _model;
-    public RegisterForm(AccountingSoftwareContext dbContext)
-	{
+    private readonly AddUsersViewModel _model;
+    public RegisterForm(AccountingSoftwareContext dbContext, AddUsersViewModel model)
+    {
         InitializeComponent();
         _dbContext = dbContext;
-        BindingContext = new AddUsersViewModel(dbContext);
-        
-    }
-
-    private void AddRegisteredUsersToDatabase()
-    {
-        /* validation
-        if (!((UsernameEntry.Text != "" && (UsernameEntry.Text[0] >= 'a' && UsernameEntry.Text[0] <= 'z') || (UsernameEntry.Text[0] >= 'A' && UsernameEntry.Text[0] <= 'Z'))
-          && PasswordEntry.Text != "" && PasswordEntry.Text.Length < 50 
-          && FirstNameEntry.Text != "" &&
-            FirstNameEntry.Text.Length < 50 
-          && SecondNameEntry.Text.Length < 50
-          && LastNameEntry.Text != "" && LastNameEntry.Text.Length < 50))
-        {
-            ErrorMessageForInvalidEntries.IsVisible = true;
-        }
-
-        else if(PasswordEntry.Text != ConfirmPasswordEntry.Text)
-        {
-            ErrorMessageForNotMatchingPasswords.IsVisible = true;
-        }
-
-        else
-        {
-            var md5 = new MD5CryptoServiceProvider();
-            _model.Username = UsernameEntry.Text;
-            byte[] Password = Encoding.ASCII.GetBytes(PasswordEntry.Text);
-            _model.PasswordHash = Convert.ToBase64String(md5.ComputeHash(Password));
-            _model.FirstName = FirstNameEntry.Text;
-            _model.SecondName = SecondNameEntry.Text;
-            _model.LastName = LastNameEntry.Text;
-            //_dbContext.SaveChanges();
-        }
-        */
-    }
-
-    private void OnRegisterClicked(object sender, EventArgs e)
-    {
-        AddRegisteredUsersToDatabase();
+        _model = model;
+        BindingContext = _model;
     }
 
     private async void OnLoginClicked(object sender, EventArgs e)
     {
         //needs optimising for memory leaks (1MB added when changing windows)
-        await Navigation.PushAsync(new UserAuthentication(_dbContext));
+        await Navigation.PopAsync();
+        UsernameEntry.Text = null;
+        PasswordEntry.Text = null;
+        ConfirmPasswordEntry.Text = null;
+        EmailEntry.Text = null;
+        FirstNameEntry.Text = null;
+        SecondNameEntry.Text = null;
+        LastNameEntry.Text = null;
+        await Navigation.PushAsync(new UserAuthentication(_dbContext, _model));
 
         GC.Collect(); //optimised 10MB memory leak
     }
