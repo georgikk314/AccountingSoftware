@@ -48,7 +48,7 @@ namespace AccountingSoftware.ViewModels
             SecondName = null;
             LastName = null;
 
-            await Application.Current.MainPage.Navigation.PopAsync();
+            //await Application.Current.MainPage.Navigation.PopAsync();
             await Application.Current.MainPage.Navigation.PushAsync(new RegisterForm(_dbContext, this));
             
         });

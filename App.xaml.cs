@@ -7,9 +7,9 @@ public partial class App : Application
 {
 	public App()
 	{
+		//entry point of the software
 		InitializeComponent();
 		var dbContext = new AccountingSoftwareContext();
-		var model = new AddUsersViewModel(dbContext);
-		MainPage = new NavigationPage(new RegisterForm(dbContext, model));
+		MainPage = new NavigationPage(new UserAuthentication(dbContext));
 	}
 }

@@ -12,10 +12,20 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
+        
+        <!-- Username Entry -->
         <Entry Grid.Row="0" x:Name="UsernameEntry" Text="{Binding Username}" Placeholder="Username" FontSize="Medium" FontFamily="Segoe UI" PlaceholderColor="#FFFFFF" BackgroundColor="Transparent" TextColor="#FFFFFF" />
+        
+        <!-- Password Entry -->
         <Entry Grid.Row="1" x:Name="PasswordEntry" Text="{Binding Password}" Placeholder="Password" FontSize="Medium" FontFamily="Segoe UI" PlaceholderColor="#FFFFFF" BackgroundColor="Transparent" TextColor="#FFFFFF" IsPassword="True" />
+
+        <!-- Login Button -->
         <Button Grid.Row="2" x:Name="LoginButton" Text="Login" Clicked="LoginButtonClicked" FontSize="Medium" FontFamily="Segoe UI" BackgroundColor="Aqua" TextColor="#ffffff" CornerRadius="10" HeightRequest="50" Margin="0,20,0,0" />
+
+        <!-- Error Message -->
         <Label Grid.Row="3" x:Name="NotMatchingCredentialsMessage" Text="Wrong credentials!" TextColor="Red" IsVisible="false"></Label>
+
+        <!-- RegisterForm HyperLink -->
         <Label Grid.Row="4" Text="Don't have an account? Register here." FontSize="Small" TextColor="#FFFFFF" VerticalOptions="End" HorizontalOptions="End" Margin="0,0,20,20">
             <Label.GestureRecognizers>
                 <TapGestureRecognizer Tapped="OnRegisterClicked" />

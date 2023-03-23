@@ -25,8 +25,9 @@ public partial class UserAuthentication : ContentPage
             
             UsernameEntry.Text = null;
             PasswordEntry.Text = null;
-             
-            await Navigation.PushAsync(new ClientManagement());
+
+            await Application.Current.MainPage.Navigation.PopAsync();
+            await Application.Current.MainPage.Navigation.PushAsync(new ClientManagement());
         }
         else
         {
@@ -36,10 +37,11 @@ public partial class UserAuthentication : ContentPage
 
 	private async void OnRegisterClicked(object sender, EventArgs e)
 	{
-        await Navigation.PopToRootAsync();
         UsernameEntry.Text = null;
         PasswordEntry.Text = null;
-        await Navigation.PushAsync(new RegisterForm(_dbContext, new AddUsersViewModel(_dbContext)));
+
+       // await Application.Current.MainPage.Navigation.PopAsync();
+        await Application.Current.MainPage.Navigation.PushAsync(new RegisterForm(_dbContext, new AddUsersViewModel(_dbContext)));
 		GC.Collect(); //optimised 10MB memory leak
     }
 }

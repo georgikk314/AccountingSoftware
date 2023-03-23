@@ -62,10 +62,12 @@ namespace AccountingSoftware.Validations
 
             if (isValid)
             {
+                //hash the password with md5 encryption
                 var md5 = new MD5CryptoServiceProvider();
                 byte[] Password = Encoding.ASCII.GetBytes(model.PasswordEntry);
                 model.PasswordHash = Convert.ToBase64String(md5.ComputeHash(Password));
 
+                //after validation we add the elements to the db
                 dbContext.Add(new Users()
                 {
                     Username = model.Username,

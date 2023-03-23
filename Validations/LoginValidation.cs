@@ -18,6 +18,7 @@ namespace AccountingSoftware.Validations
             {
                 if (user.Username == model.Username)
                 {
+                    //check hashed password from the database with the entered password which we now hash, i.e we compare hashes
                     var md5 = new MD5CryptoServiceProvider();
                                 byte[] Password =   Encoding.ASCII.GetBytes(model.Password);
                                 var CheckPassword = Convert.ToBase64String(md5.ComputeHash(Password));
