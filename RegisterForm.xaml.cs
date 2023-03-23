@@ -46,7 +46,6 @@ public partial class RegisterForm : ContentPage
 
     private async void OnLoginClicked(object sender, EventArgs e)
     {
-        await Navigation.PopAsync();
         UsernameEntry.Text = null;
         PasswordEntry.Text = null;
         ConfirmPasswordEntry.Text = null;
@@ -54,7 +53,7 @@ public partial class RegisterForm : ContentPage
         FirstNameEntry.Text = null;
         SecondNameEntry.Text = null;
         LastNameEntry.Text = null;
-        await Navigation.PushAsync(new UserAuthentication(_dbContext, _model));
+        await Navigation.PushAsync(new UserAuthentication(_dbContext));
 
         GC.Collect(); //optimised 10MB memory leak
     }

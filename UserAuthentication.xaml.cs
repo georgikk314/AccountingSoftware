@@ -1,4 +1,5 @@
 using AccountingSoftware.Data;
+using AccountingSoftware.Validations;
 using AccountingSoftware.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Maui.Controls;
@@ -8,26 +9,37 @@ namespace AccountingSoftware;
 public partial class UserAuthentication : ContentPage
 {
     private readonly AccountingSoftwareContext _dbContext;
-    private readonly AddUsersViewModel _model;
-    public UserAuthentication(AccountingSoftwareContext dbContext, AddUsersViewModel model)
+    private readonly LoginViewModel _model;
+    public UserAuthentication(AccountingSoftwareContext dbContext)
 	{
         InitializeComponent();
         _dbContext = dbContext;
-        _model = model;
+        _model = new LoginViewModel();
         BindingContext = _model;
     }
 
-    private void LoginButtonClicked(object sender, EventArgs e)
+    private async void LoginButtonClicked(object sender, EventArgs e)
 	{
-
+        if(LoginValidation.Validation(_dbContext, _model))
+        {
+            
+            UsernameEntry.Text = null;
+            PasswordEntry.Text = null;
+             
+            await Navigation.PushAsync(new ClientManagement());
+        }
+        else
+        {
+            NotMatchingCredentialsMessage.IsVisible = true;
+        }
 	}
 
 	private async void OnRegisterClicked(object sender, EventArgs e)
 	{
-        await Navigation.PopAsync();
+        await Navigation.PopToRootAsync();
         UsernameEntry.Text = null;
         PasswordEntry.Text = null;
-        await Navigation.PushAsync(new RegisterForm(_dbContext, _model));
+        await Navigation.PushAsync(new RegisterForm(_dbContext, new AddUsersViewModel(_dbContext)));
 		GC.Collect(); //optimised 10MB memory leak
     }
 }
