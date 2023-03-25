@@ -3,6 +3,7 @@ using AccountingSoftware.Validations;
 using AccountingSoftware.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Maui.Controls;
+using System.Security.Cryptography;
 
 namespace AccountingSoftware;
 
@@ -27,7 +28,7 @@ public partial class UserAuthentication : ContentPage
             PasswordEntry.Text = null;
 
             await Application.Current.MainPage.Navigation.PopAsync();
-            await Application.Current.MainPage.Navigation.PushAsync(new ClientManagement());
+            await Application.Current.MainPage.Navigation.PushAsync(new Dashboard());
         }
         else
         {
