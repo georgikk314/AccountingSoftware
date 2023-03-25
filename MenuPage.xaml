@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AccountingSoftware.MenuPage"
+             Title="">
+    <StackLayout Margin="20">
+        <Label Text="MENU" FontSize="Large" HorizontalOptions="CenterAndExpand" Margin="0,0,0,20"/>
+
+        <StackLayout Orientation="Horizontal" Margin="20">
+            <StackLayout Orientation="Horizontal" Margin="50,0,0,20">
+                <Button Text="Dashboard" FontSize="Large" WidthRequest="500" HorizontalOptions="CenterAndExpand" Clicked="OnDashboardClicked"/>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" Margin="50,0,0,20">
+                <Button Text="Client Management" WidthRequest="500" FontSize="Large" HorizontalOptions="CenterAndExpand" Clicked="OnClientManagementClicked"/>
+            </StackLayout>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal" Margin="20">
+            <StackLayout Orientation="Horizontal" Margin="50,0,0,20">
+                <Button Text="Vendor Management" WidthRequest="500" FontSize="Large" HorizontalOptions="CenterAndExpand" Clicked="OnVendorManagementClicked"/>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" Margin="50,0,0,20">
+                <Button Text="Record Transactions" WidthRequest="500" FontSize="Large" HorizontalOptions="CenterAndExpand" Clicked="OnRecordTransactionsClicked"/>
+            </StackLayout>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal" Margin="20">
+            <StackLayout Orientation="Horizontal" Margin="50,0,0,20">
+                <Button Text="Invoices" WidthRequest="500" FontSize="Large" HorizontalOptions="CenterAndExpand" Clicked="OnInvoicesClicked"/>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" Margin="50,0,0,20">
+                <Button Text="Inventory Management" WidthRequest="500" FontSize="Large" HorizontalOptions="CenterAndExpand" Clicked="OnInventoryManagementClicked"/>
+            </StackLayout>
+
+            
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal" Margin="20">
+            <StackLayout Orientation="Horizontal" Margin="50,0,0,20" IsVisible="True">
+                    <Button Text="Generate Financial Reports" WidthRequest="500" FontSize="Large" HorizontalOptions="CenterAndExpand"  Clicked="OnGenerateFinancialReportsClicked"/>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" Margin="50,0,0,20" IsVisible="True">
+                <Button Text="Exit" WidthRequest="500" FontSize="Large" HorizontalOptions="CenterAndExpand"  Clicked="OnExitClicked"/>
+            </StackLayout>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>
