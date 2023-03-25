@@ -76,9 +76,6 @@
 	  <MauiXaml Update="RegisterForm.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="TaxCalculation.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	  <MauiXaml Update="UserAuthentication.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
