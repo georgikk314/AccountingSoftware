@@ -12,7 +12,7 @@ namespace AccountingSoftware.Validations
 {
     public class LoginValidation
     {
-        public static bool Validation(AccountingSoftwareContext dbContext, LoginViewModel model)
+        public static int Validation(AccountingSoftwareContext dbContext, LoginViewModel model)
         {
             foreach (var user in dbContext.Users)
             {
@@ -25,12 +25,13 @@ namespace AccountingSoftware.Validations
 
                     if(user.PasswordHash == CheckPassword)
                     {
-                        return true;
+                        return user.UserId;
                     }
                 }
             }
-            return false;
+            return -1;
             
         }
+ 
     }
 }

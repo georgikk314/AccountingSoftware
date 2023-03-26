@@ -21,14 +21,18 @@ public partial class UserAuthentication : ContentPage
 
     private async void LoginButtonClicked(object sender, EventArgs e)
 	{
-        if(LoginValidation.Validation(_dbContext, _model))
+        //if there isn't a user it will be -1
+        int userId = LoginValidation.Validation(_dbContext, _model);
+        
+
+        if(userId > 0)
         {
             
             UsernameEntry.Text = null;
             PasswordEntry.Text = null;
 
             await Application.Current.MainPage.Navigation.PopAsync();
-            await Application.Current.MainPage.Navigation.PushAsync(new Dashboard());
+            await Application.Current.MainPage.Navigation.PushAsync(new MenuPage(_dbContext, userId));
         }
         else
         {

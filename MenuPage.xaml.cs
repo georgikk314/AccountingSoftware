@@ -1,11 +1,17 @@
+using AccountingSoftware.Data;
+
 namespace AccountingSoftware;
 
 public partial class MenuPage : ContentPage
 {
-	public MenuPage()
-	{
-		InitializeComponent();
-	}
+    private int _userId;
+    private readonly AccountingSoftwareContext _dbContext;
+	public MenuPage(AccountingSoftwareContext dbContext, int userId)
+    {
+        InitializeComponent();
+        _userId = userId;
+        _dbContext = dbContext;
+    }
 
     private async void OnDashboardClicked(object sender, EventArgs e)
     {
@@ -14,7 +20,7 @@ public partial class MenuPage : ContentPage
 
     private async void OnClientManagementClicked(object sender, EventArgs e)
     {
-        await Application.Current.MainPage.Navigation.PushAsync(new ClientManagement());
+        await Application.Current.MainPage.Navigation.PushAsync(new ClientManagement(_dbContext, _userId));
     }
 
     private async void OnVendorManagementClicked(object sender, EventArgs e)

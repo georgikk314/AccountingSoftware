@@ -7,20 +7,20 @@
         <Label Text="Client Management" FontSize="Large" HorizontalOptions="CenterAndExpand" Margin="0,0,0,20"/>
         <StackLayout Orientation="Horizontal" Margin="0,0,0,20">
             <Label Text="Client Name:" FontSize="Medium" VerticalOptions="Center"/>
-            <Entry x:Name="ClientNameEntry" Placeholder="Enter client name" VerticalOptions="CenterAndExpand" WidthRequest="300" />
+            <Entry x:Name="ClientNameEntry" Text="{Binding ClientName}" Placeholder="Enter client name" VerticalOptions="CenterAndExpand" WidthRequest="300" />
         </StackLayout>
         <StackLayout Orientation="Horizontal" Margin="0,0,0,20">
             <Label Text="Email:" FontSize="Medium" VerticalOptions="Center"/>
-            <Entry x:Name="EmailEntry" Placeholder="Enter email" VerticalOptions="CenterAndExpand" WidthRequest="300" />
+            <Entry x:Name="EmailEntry" Text="{Binding Email}" Placeholder="Enter email" VerticalOptions="CenterAndExpand" WidthRequest="300" />
         </StackLayout>
         <StackLayout Orientation="Horizontal" Margin="0,0,0,20">
             <Label Text="Phone Number:" FontSize="Medium" VerticalOptions="Center"/>
-            <Entry x:Name="PhoneNumberEntry" Placeholder="Enter phone number" Keyboard="Numeric" VerticalOptions="CenterAndExpand" WidthRequest="300" />
+            <Entry x:Name="PhoneNumberEntry" Text="{Binding PhoneNumber}" Placeholder="Enter phone number" Keyboard="Numeric" VerticalOptions="CenterAndExpand" WidthRequest="300" />
         </StackLayout>
         <StackLayout Orientation="Horizontal" Margin="0,0,0,20">
             <Label Text="Address:" FontSize="Medium" VerticalOptions="Start"/>
-            <Editor x:Name="AddressEditor" Placeholder="Enter address" HeightRequest="120" WidthRequest="300" VerticalOptions="CenterAndExpand"/>
+            <Editor x:Name="AddressEditor" Text="{Binding Address}" Placeholder="Enter address" HeightRequest="120" WidthRequest="300" VerticalOptions="CenterAndExpand"/>
         </StackLayout>
-        <Button Text="Save Client" FontSize="Large" HorizontalOptions="CenterAndExpand" Clicked="OnSaveClientClicked"/>
+        <Button Text="Save Client" FontSize="Large" HorizontalOptions="CenterAndExpand" Command="{Binding OnSaveClientClicked}"/>
     </StackLayout>
 </ContentPage>
