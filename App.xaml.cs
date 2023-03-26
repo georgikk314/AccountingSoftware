@@ -10,7 +10,7 @@ public partial class App : Application
 		//entry point of the software
 		InitializeComponent();
 		var dbContext = new AccountingSoftwareContext();
-        //MainPage = new NavigationPage(new VendorManagement(dbContext));
+        //MainPage = new NavigationPage(new UserAuthentication(dbContext));
         MainPage = new NavigationPage(new MenuPage());
 	}
 }
