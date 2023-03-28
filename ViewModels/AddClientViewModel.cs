@@ -55,6 +55,19 @@ namespace AccountingSoftware.ViewModels
             }
         }
 
+        private bool _isClientAddedVisible = false;
+
+        //property for access to this element in different classes
+        public bool IsClientAddedVisible
+        {
+            get { return _isClientAddedVisible; }
+            set
+            {
+                _isClientAddedVisible = value;
+                OnPropertyChanged(nameof(IsClientAddedVisible));
+            }
+        }
+
         private readonly AccountingSoftwareContext _dbContext;
         private int _userId;
 

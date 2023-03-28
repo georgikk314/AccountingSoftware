@@ -18,6 +18,7 @@ namespace AccountingSoftware.Validations
             model.IsEmptyFieldsMessageVisible = false;
             model.IsNotCorrectEmailMessageVisible = false;
             model.IsNotCorrectPhoneMessageVisible = false;
+            model.IsClientAddedVisible = false;
 
             if(string.IsNullOrEmpty(model.Address) || string.IsNullOrEmpty(model.PhoneNumber) || string.IsNullOrEmpty(model.ClientName) || string.IsNullOrEmpty(model.Email))
             {
@@ -42,6 +43,8 @@ namespace AccountingSoftware.Validations
 
             if(isValid)
             {
+                model.IsClientAddedVisible = true;
+
                 dbContext.Add(new Customers()
                 {
                     Name = model.ClientName,
