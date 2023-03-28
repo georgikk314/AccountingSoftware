@@ -25,7 +25,7 @@ public partial class MenuPage : ContentPage
 
     private async void OnVendorManagementClicked(object sender, EventArgs e)
     {
-        await Application.Current.MainPage.Navigation.PushAsync(new VendorManagement());
+        await Application.Current.MainPage.Navigation.PushAsync(new VendorManagement(_dbContext, _userId));
     }
 
     private async void OnRecordTransactionsClicked(object sender, EventArgs e)

@@ -7,20 +7,27 @@
         <Label Text="Vendor Management" FontSize="Large" HorizontalOptions="CenterAndExpand" Margin="0,0,0,20"/>
         <StackLayout Orientation="Horizontal" Margin="0,0,0,20">
             <Label Text="Vendor Name:" FontSize="Medium" VerticalOptions="Center"/>
-            <Entry x:Name="VendorNameEntry" Placeholder="Enter vendor name" VerticalOptions="CenterAndExpand" WidthRequest="300" />
+            <Entry x:Name="VendorNameEntry" Text="{Binding VendorName}" Placeholder="Enter vendor name" VerticalOptions="CenterAndExpand" WidthRequest="300" />
         </StackLayout>
         <StackLayout Orientation="Horizontal" Margin="0,0,0,20">
             <Label Text="Email:" FontSize="Medium" VerticalOptions="Center"/>
-            <Entry x:Name="EmailEntry" Placeholder="Enter email" VerticalOptions="CenterAndExpand" WidthRequest="300" />
+            <Entry x:Name="EmailEntry" Text="{Binding Email}" Placeholder="Enter email" VerticalOptions="CenterAndExpand" WidthRequest="300" />
         </StackLayout>
         <StackLayout Orientation="Horizontal" Margin="0,0,0,20">
             <Label Text="Phone Number:" FontSize="Medium" VerticalOptions="Center"/>
-            <Entry x:Name="PhoneNumberEntry" Placeholder="Enter phone number" Keyboard="Numeric" VerticalOptions="CenterAndExpand" WidthRequest="300" />
+            <Entry x:Name="PhoneNumberEntry" Text="{Binding PhoneNumber}" Placeholder="Enter phone number" Keyboard="Numeric" VerticalOptions="CenterAndExpand" WidthRequest="300" />
         </StackLayout>
         <StackLayout Orientation="Horizontal" Margin="0,0,0,20">
             <Label Text="Address:" FontSize="Medium" VerticalOptions="Start"/>
-            <Editor x:Name="AddressEditor" Placeholder="Enter address" HeightRequest="120" WidthRequest="300" VerticalOptions="CenterAndExpand"/>
+            <Editor x:Name="AddressEditor" Text="{Binding Address}" Placeholder="Enter address" HeightRequest="120" WidthRequest="300" VerticalOptions="CenterAndExpand"/>
         </StackLayout>
-        <Button Text="Save Vendor" FontSize="Large" HorizontalOptions="CenterAndExpand" Clicked="OnSaveVendorClicked"/>
+        <StackLayout>
+            <Label Text="There are empty fields!" FontSize="Medium" TextColor="Red" IsVisible="{Binding IsEmptyFieldsMessageVisible}"></Label>
+            <Label Text="You have entered wrong email address!" FontSize="Medium" TextColor="Red" IsVisible="{Binding IsNotCorrectEmailMessageVisible}"></Label>
+            <Label Text="You have entered wrong phone!" FontSize="Medium" TextColor="Red" IsVisible="{Binding IsNotCorrectPhoneMessageVisible}"></Label>
+            <Label Text="Successfully added a new vendor!" FontSize="Medium" TextColor="Blue" IsVisible="{Binding IsAddedVendorVisible}"></Label>
+        </StackLayout>
+        
+        <Button Text="Save Vendor" FontSize="Large" HorizontalOptions="CenterAndExpand" Command="{Binding OnSaveVendorClicked}"/>
     </StackLayout>
 </ContentPage>

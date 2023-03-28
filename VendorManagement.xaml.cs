@@ -1,14 +1,18 @@
+using AccountingSoftware.Data;
+using AccountingSoftware.ViewModels;
+
 namespace AccountingSoftware;
 
 public partial class VendorManagement : ContentPage
 {
-	public VendorManagement()
+    private readonly AccountingSoftwareContext _dbContext;
+    private readonly AddVendorViewModel _model;
+    public VendorManagement(AccountingSoftwareContext dbContext, int userId)
 	{
 		InitializeComponent();
-	}
-
-    private void OnSaveVendorClicked(object sender, EventArgs e)
-    {
-        //TODO:
+        _dbContext = dbContext;
+        _model = new AddVendorViewModel(dbContext, userId);
+        BindingContext = _model;
     }
+
 }
