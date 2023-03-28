@@ -15,6 +15,9 @@ namespace AccountingSoftware.Validations
         public static void Validation(AccountingSoftwareContext dbContext, AddClientViewModel model, int userId)
         {
             bool isValid = true;
+            model.IsEmptyFieldsMessageVisible = false;
+            model.IsNotCorrectEmailMessageVisible = false;
+            model.IsNotCorrectPhoneMessageVisible = false;
 
             if(string.IsNullOrEmpty(model.Address) || string.IsNullOrEmpty(model.PhoneNumber) || string.IsNullOrEmpty(model.ClientName) || string.IsNullOrEmpty(model.Email))
             {
