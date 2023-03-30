@@ -8,42 +8,42 @@
         <Label Text="New Transaction" FontSize="Large" HorizontalOptions="CenterAndExpand" Margin="0,0,0,30"/>
         <StackLayout Orientation="Horizontal" Margin="0,0,0,30">
             <Label Text="Transaction Type:" FontSize="Medium" VerticalOptions="CenterAndExpand" WidthRequest="200"/>
-            <Picker x:Name="TransactionTypePicker" VerticalOptions="Center" BackgroundColor="Blue" WidthRequest="150">
+            <Picker x:Name="TransactionTypePicker" VerticalOptions="Center"  WidthRequest="150" SelectedItem="{Binding TransactionType}">
                 <Picker.ItemsSource>
                     <x:Array Type="{x:Type x:String}">
                         <x:String>Expense</x:String>
                         <x:String>Income</x:String>
-                        <x:String>Transfer</x:String>
                     </x:Array>
                 </Picker.ItemsSource>
+                
             </Picker>
         </StackLayout>
         <StackLayout Orientation="Horizontal" Margin="0,0,0,30">
             <Label Text="Amount:" FontSize="Medium" VerticalOptions="CenterAndExpand" WidthRequest="120"/>
-            <Entry x:Name="AmountEntry" Placeholder="Enter amount" Keyboard="Numeric" VerticalOptions="CenterAndExpand"/>
+            <Entry x:Name="AmountEntry" Text="{Binding AmountEntry}" Placeholder="Enter amount" Keyboard="Numeric" VerticalOptions="CenterAndExpand"/>
         </StackLayout>
         <StackLayout Orientation="Horizontal" Margin="0,0,0,30">
-            <Label Text="Category:" FontSize="Medium" VerticalOptions="CenterAndExpand" WidthRequest="120"/>
-            <Picker x:Name="CategoryPicker" Title="" VerticalOptions="Center"
-                    BackgroundColor="Blue" WidthRequest="200">
-                <Picker.ItemsSource>
-                    <x:Array Type="{x:Type x:String}">
-                        <x:String>Office Expenses</x:String>
-                        <x:String>Advertising</x:String>
-                        <x:String>Rent</x:String>
-                    </x:Array>
-                </Picker.ItemsSource>
-            </Picker>
+            <Label Text="Customer/Vendor Name:" FontSize="Medium" VerticalOptions="CenterAndExpand" WidthRequest="300"/>
+            <Entry x:Name="CustomerVendorNameEntry" Text="{Binding VendorOrCustomerName}" Placeholder="Enter customer or vendor name" VerticalOptions="CenterAndExpand"/>
         </StackLayout>
         <StackLayout Orientation="Horizontal" Margin="0,0,0,30">
             <Label Text="Date:" FontSize="Medium" VerticalOptions="CenterAndExpand" WidthRequest="120"/>
-            <DatePicker x:Name="TransactionDatePicker" VerticalOptions="Center"/>
+            <DatePicker x:Name="TransactionDatePicker" Date="{Binding TransactionDate}" VerticalOptions="Center"/>
         </StackLayout>
         <StackLayout Orientation="Horizontal" Margin="0,0,0,30">
             <Label Text="Description:" FontSize="Medium" VerticalOptions="Start" WidthRequest="200"/>
-            <Editor x:Name="DescriptionEntry" Placeholder="Enter description" VerticalOptions="CenterAndExpand" AutoSize="TextChanges" WidthRequest="700" HeightRequest="200"/>
+            <Editor x:Name="DescriptionEntry" Text="{Binding Description}" Placeholder="Enter description" VerticalOptions="CenterAndExpand" AutoSize="TextChanges" WidthRequest="700" HeightRequest="150"/>
         </StackLayout>
-        <Button Text="Save Transaction" FontSize="Large" HorizontalOptions="CenterAndExpand" Clicked="OnSaveTransactionClicked"/>
+        <StackLayout>
+            <Label Text="You haven't chosen a transaction type!" FontSize="Medium" TextColor="Red" IsVisible="{Binding IsChosenTransactionTypeMessageVisible}"></Label>
+            <Label Text="You have empty fields!" FontSize="Medium" TextColor="Red" IsVisible="{Binding IsEmptyFieldsMessageVisible}"></Label>
+            <Label Text="You have entered an impossible value for the amount!" FontSize="Medium" TextColor="Red" IsVisible="{Binding IsWrongAmountEnteredMessageVisible}"></Label>
+            <Label Text="You have entered a non-existing vendor!" FontSize="Medium" TextColor="Red" IsVisible="{Binding IsNonExistingVendorMessageVisible}"></Label>
+            <Label Text="You have entered a non-existing customer!" FontSize="Medium" TextColor="Red" IsVisible="{Binding IsNonExistingCustomerMessageVisible}"></Label>
+            <Label Text="Successfully added a new transaction!" FontSize="Medium" TextColor="Blue" IsVisible="{Binding IsSuccessfulTransactionMessageVisible}"></Label>
+            
+        </StackLayout>
+        <Button Text="Save Transaction" FontSize="Large" HorizontalOptions="CenterAndExpand" Command="{Binding OnSaveTransactionClicked}"/>
     </StackLayout>
 
 </ContentPage>

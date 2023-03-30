@@ -12,9 +12,11 @@ namespace AccountingSoftware.Data.Tables
         [Key]
         public int TransactionId { get; set; }
         public DateTime TransactionDate { get; set; }
+        public string TransactionType { get; set; }
         public double Amount { get; set; }
-        public int CustomerId { get; set; }
-        public int VendorId { get; set; }
+        public string Description { get; set; }
+        public string CustomerName { get; set; }
+        public string VendorName { get; set; }
         public int UserId { get; set; }
     }
 }

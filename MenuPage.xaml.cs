@@ -30,7 +30,7 @@ public partial class MenuPage : ContentPage
 
     private async void OnRecordTransactionsClicked(object sender, EventArgs e)
     {
-        await Application.Current.MainPage.Navigation.PushAsync(new RecordTransactions());
+        await Application.Current.MainPage.Navigation.PushAsync(new RecordTransactions(_dbContext, _userId));
     }
 
     private async void OnInvoicesClicked(object sender, EventArgs e)
