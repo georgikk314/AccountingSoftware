@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AccountingSoftware.AddItemPage"
+             Title="">
+    <StackLayout>
+        <StackLayout Margin="20" Orientation="Horizontal">
+            <Label Text="Item name: " Margin="0,0,20,0" FontSize="Medium"></Label>
+            <Entry Text="{Binding ItemName}" FontSize="Medium" Placeholder="Type the item's name"></Entry>
+        </StackLayout>
+        
+        <StackLayout Margin="20" Orientation="Horizontal">
+            <Label Text="Cost:" Margin="0,0,20,0" FontSize="Medium"></Label>
+            <Entry Text="{Binding Cost}" FontSize="Medium" Placeholder="Type the item's cost" Margin="0,0,20,0"></Entry>
+            <Label Text="lev." FontSize="Medium"></Label>
+        </StackLayout>
+        
+        <StackLayout Margin="20" Orientation="Horizontal">
+            <Label Text="Selling price: " Margin="0,0,20,0" FontSize="Medium"></Label>
+            <Entry Text="{Binding SellingPrice}" FontSize="Medium" Placeholder="Type the item's selling price" Margin="0,0,20,0"></Entry>
+            <Label Text="lev." FontSize="Medium"></Label>
+        </StackLayout>
+        
+        <StackLayout Margin="20" Orientation="Horizontal">
+            <Label Text="Quantity: " Margin="0,0,20,0" FontSize="Medium"></Label>
+            <Entry Text="{Binding QuantityInStock}" FontSize="Medium" Placeholder="Type the item's quantity"></Entry>
+        </StackLayout>
+
+        <StackLayout Margin="20" Orientation="Horizontal">
+            <Label Text="Description: " Margin="0,0,20,0" FontSize="Medium"></Label>
+            <Editor Text="{Binding Description}" FontSize="Medium" Placeholder="Type the item's description" WidthRequest="500" HeightRequest="150"></Editor>
+        </StackLayout>
+        <StackLayout>
+            <Label Text="You have empty fields!" FontSize="Medium" TextColor="Red" IsVisible="{Binding IsEmptyFieldsMessageVisible}"></Label>
+            <Label Text="You have entered an impossible value for the amount!" FontSize="Medium" TextColor="Red" IsVisible="{Binding IsWrongAmountEnteredMessageVisible}"></Label>
+            <Label Text="Successfully added a new item!" FontSize="Medium" TextColor="Blue" IsVisible="{Binding IsSuccessfulItemAddedMessageVisible}"></Label>
+        </StackLayout>
+        
+        <StackLayout Orientation="Horizontal">
+            <Button Text="Add" HorizontalOptions="CenterAndExpand" FontSize="Medium" WidthRequest="200" Command="{Binding OnAddClicked}"></Button>
+        </StackLayout>
+        
+        
+    </StackLayout>
+    
+</ContentPage>

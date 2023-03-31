@@ -40,7 +40,7 @@ public partial class MenuPage : ContentPage
 
     private async void OnInventoryManagementClicked(object sender, EventArgs e)
     {
-        await Application.Current.MainPage.Navigation.PushAsync(new InventoryManagement());
+        await Application.Current.MainPage.Navigation.PushAsync(new InventoryManagement(_dbContext, _userId));
     }
 
     private async void OnGenerateFinancialReportsClicked(object sender, EventArgs e)

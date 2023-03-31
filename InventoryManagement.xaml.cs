@@ -1,15 +1,21 @@
+using AccountingSoftware.Data;
+
 namespace AccountingSoftware;
 
 public partial class InventoryManagement : ContentPage
 {
-	public InventoryManagement()
+    private readonly AccountingSoftwareContext _dbContext;
+    private int _userId;
+	public InventoryManagement(AccountingSoftwareContext dbContext, int userId)
 	{
 		InitializeComponent();
+        _dbContext = dbContext;
+        _userId = userId;
 	}
 
-    private void OnAddItemClicked(object sender, EventArgs e)
+    private async void OnAddItemClicked(object sender, EventArgs e)
     {
-        //TODO:
+        await Application.Current.MainPage.Navigation.PushAsync(new AddItemPage(_dbContext, _userId));
     }
 
     private void OnDownloadPdfClicked(object sender, EventArgs e)
