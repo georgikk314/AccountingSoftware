@@ -48,6 +48,8 @@
             <Label Text="You have entered an impossible value for the amount!" FontSize="Medium" TextColor="Red" IsVisible="{Binding IsWrongAmountEnteredMessageVisible}"></Label>
             <Label Text="You have entered a non-existing vendor!" FontSize="Medium" TextColor="Red" IsVisible="{Binding IsNonExistingVendorMessageVisible}"></Label>
             <Label Text="You have entered a non-existing customer!" FontSize="Medium" TextColor="Red" IsVisible="{Binding IsNonExistingCustomerMessageVisible}"></Label>
+            <Label Text="You have entered a non-existing item!" FontSize="Medium" TextColor="Red" IsVisible="{Binding IsNonExistingItemMessageVisible}"></Label>
+            <Label Text="You have entered a invalid quantity!" FontSize="Medium" TextColor="Red" IsVisible="{Binding IsInvalidQuantityMessageVisible}"></Label>
             <Label Text="Successfully added a new transaction!" FontSize="Medium" TextColor="Blue" IsVisible="{Binding IsSuccessfulTransactionMessageVisible}"></Label>
             
         </StackLayout>

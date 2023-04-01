@@ -12,8 +12,6 @@ namespace AccountingSoftware.ViewModels
 {
     public class AddTransactionViewModel : BindableObject
     {
-        private double _amount;
-
         public int TransactionId { get; set; }
         public DateTime TransactionDate { get; set; }
         public string Price { get; set; }
@@ -102,6 +100,31 @@ namespace AccountingSoftware.ViewModels
             }
         }
 
+        private bool _isNonExistingItemMessageVisible = false;
+
+        //property for access to this element in different classes
+        public bool IsNonExistingItemMessageVisible
+        {
+            get { return _isNonExistingItemMessageVisible; }
+            set
+            {
+                _isNonExistingItemMessageVisible = value;
+                OnPropertyChanged(nameof(IsNonExistingItemMessageVisible));
+            }
+        }
+
+        private bool _isInvalidQuantityMessageVisible = false;
+
+        //property for access to this element in different classes
+        public bool IsInvalidQuantityMessageVisible
+        {
+            get { return _isInvalidQuantityMessageVisible; }
+            set
+            {
+                _isInvalidQuantityMessageVisible = value;
+                OnPropertyChanged(nameof(IsInvalidQuantityMessageVisible));
+            }
+        }
 
         private readonly AccountingSoftwareContext _dbContext;
         private int _userId;

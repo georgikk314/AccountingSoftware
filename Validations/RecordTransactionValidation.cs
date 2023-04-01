@@ -38,66 +38,87 @@ namespace AccountingSoftware.Validations
                     }
                     
                     isValid = false;
-                    model.IsNonExistingCustomerMessageVisible = true;
-                    foreach (var item in dbContext.Inventory)
+                    model.IsNonExistingItemMessageVisible = true;
+
+                    foreach (var transaction in dbContext.Transactions)
                     {
-                        if (item.ItemName == model.ItemName) { isValid = true; break; }
+                        if(transaction.CustomerName != null) //this validation is only for customers
+                        {
+                            foreach (var item in dbContext.Inventory)
+                            {
+                                if (item.ItemName == model.ItemName) //wanted item is in the inventory
+                                {
+                                    isValid = true;
+                                    model.IsNonExistingItemMessageVisible = false;
+                                    if (item.QuantityInStock < int.Parse(model.Quantity)) //if we don't have enough quantity
+                                    {
+                                        model.IsInvalidQuantityMessageVisible = true;
+                                        isValid = false;
+                                    }
+                                    break;
+                                }
+                            }
+                        }
                     }
 
-                    switch (model.TransactionType)
+                    if (isValid)
                     {
-                        case "Expense":
 
-                            isValid = false;
-                            model.IsNonExistingVendorMessageVisible = true;
-                            foreach (var vendor in dbContext.Vendors)
-                            {
-                                if (vendor.Name == model.VendorOrCustomerName && vendor.UserId == userId)
+                        switch (model.TransactionType)
+                        {
+                            case "Expense":
+
+                                isValid = false;
+                                model.IsNonExistingVendorMessageVisible = true;
+                                foreach (var vendor in dbContext.Vendors)
                                 {
-                                    isValid = true;
-                                    model.IsNonExistingVendorMessageVisible = false;
-                                    dbContext.Add(new Transactions()
+                                    if (vendor.Name == model.VendorOrCustomerName && vendor.UserId == userId)
                                     {
-                                        TransactionDate = model.TransactionDate,
-                                        ItemName = model.ItemName,
-                                        Quantity = int.Parse(model.Quantity),
-                                        Price = double.Parse(model.Price),
-                                        Description = model.Description,
-                                        CustomerName = null,
-                                        VendorName = model.VendorOrCustomerName,
-                                        UserId = userId
-                                    });
+                                        isValid = true;
+                                        model.IsNonExistingVendorMessageVisible = false;
+                                        dbContext.Add(new Transactions()
+                                        {
+                                            TransactionDate = model.TransactionDate,
+                                            ItemName = model.ItemName,
+                                            Quantity = int.Parse(model.Quantity),
+                                            Price = double.Parse(model.Price),
+                                            Description = model.Description,
+                                            CustomerName = null,
+                                            VendorName = model.VendorOrCustomerName,
+                                            UserId = userId
+                                        });
+                                    }
                                 }
-                            }
 
-                            break;
+                                break;
 
-                        case "Income":
+                            case "Income":
 
-                            isValid = false;
-                            model.IsNonExistingCustomerMessageVisible = true;
-                            foreach (var customer in dbContext.Customers)
-                            {
-                                if (customer.Name == model.VendorOrCustomerName)
+                                isValid = false;
+                                model.IsNonExistingCustomerMessageVisible = true;
+                                foreach (var customer in dbContext.Customers)
                                 {
-                                    isValid = true;
-                                    model.IsNonExistingCustomerMessageVisible = false;
-                                    dbContext.Add(new Transactions()
+                                    if (customer.Name == model.VendorOrCustomerName)
                                     {
-                                        TransactionDate = model.TransactionDate,
-                                        TransactionType = model.TransactionType,
-                                        ItemName = model.ItemName,
-                                        Quantity = int.Parse(model.Quantity),
-                                        Price = double.Parse(model.Price),
-                                        Description = model.Description,
-                                        CustomerName = model.VendorOrCustomerName,
-                                        VendorName = null,
-                                        UserId = userId
-                                    });
+                                        isValid = true;
+                                        model.IsNonExistingCustomerMessageVisible = false;
+                                        dbContext.Add(new Transactions()
+                                        {
+                                            TransactionDate = model.TransactionDate,
+                                            TransactionType = model.TransactionType,
+                                            ItemName = model.ItemName,
+                                            Quantity = int.Parse(model.Quantity),
+                                            Price = double.Parse(model.Price),
+                                            Description = model.Description,
+                                            CustomerName = model.VendorOrCustomerName,
+                                            VendorName = null,
+                                            UserId = userId
+                                        });
+                                    }
                                 }
-                            }
 
-                            break;
+                                break;
+                        }
                     }
                 }
             }
@@ -106,13 +127,8 @@ namespace AccountingSoftware.Validations
                 if (ex.Message == "Input string was not in a correct format.")
                 {
                     model.IsWrongAmountEnteredMessageVisible = true;
+                    isValid = false;
                 }
-
-                /*
-                if(ex.InnerException is FormatException)
-                {
-                    model.IsWrongAmountEnteredMessageVisible = true;
-                }*/
             }
 
             if (isValid)
