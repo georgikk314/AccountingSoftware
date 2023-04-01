@@ -5,8 +5,8 @@
              Title=""
              BackgroundColor="#FFFFFF">
     <StackLayout Margin="20">
-        <Label Text="New Transaction" FontSize="Large" HorizontalOptions="CenterAndExpand" Margin="0,0,0,30"/>
-        <StackLayout Orientation="Horizontal" Margin="0,0,0,30">
+        <Label Text="New Transaction" FontSize="Large" HorizontalOptions="CenterAndExpand" Margin="0,0,0,10"/>
+        <StackLayout Orientation="Horizontal" Margin="0,0,0,10">
             <Label Text="Transaction Type:" FontSize="Medium" VerticalOptions="CenterAndExpand" WidthRequest="200"/>
             <Picker x:Name="TransactionTypePicker" VerticalOptions="Center"  WidthRequest="150" SelectedItem="{Binding TransactionType}">
                 <Picker.ItemsSource>
@@ -18,19 +18,27 @@
                 
             </Picker>
         </StackLayout>
-        <StackLayout Orientation="Horizontal" Margin="0,0,0,30">
-            <Label Text="Amount:" FontSize="Medium" VerticalOptions="CenterAndExpand" WidthRequest="120"/>
-            <Entry x:Name="AmountEntry" Text="{Binding AmountEntry}" Placeholder="Enter amount" Keyboard="Numeric" VerticalOptions="CenterAndExpand"/>
+        <StackLayout Orientation="Horizontal" Margin="0,0,0,10">
+            <Label Text="Item name:" FontSize="Medium" VerticalOptions="CenterAndExpand" WidthRequest="250"/>
+            <Entry Text="{Binding ItemName}" Placeholder="Enter item name" Keyboard="Numeric" VerticalOptions="CenterAndExpand"/>
         </StackLayout>
-        <StackLayout Orientation="Horizontal" Margin="0,0,0,30">
+        <StackLayout Orientation="Horizontal" Margin="0,0,0,10">
+            <Label Text="Quantity:" FontSize="Medium" VerticalOptions="CenterAndExpand" WidthRequest="120"/>
+            <Entry Text="{Binding Quantity}" Placeholder="Enter quantity" Keyboard="Numeric" VerticalOptions="CenterAndExpand"/>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal" Margin="0,0,0,10">
+            <Label Text="Price:" FontSize="Medium" VerticalOptions="CenterAndExpand" WidthRequest="120"/>
+            <Entry Text="{Binding Price}" Placeholder="Enter price" Keyboard="Numeric" VerticalOptions="CenterAndExpand"/>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal" Margin="0,0,0,10">
             <Label Text="Customer/Vendor Name:" FontSize="Medium" VerticalOptions="CenterAndExpand" WidthRequest="300"/>
             <Entry x:Name="CustomerVendorNameEntry" Text="{Binding VendorOrCustomerName}" Placeholder="Enter customer or vendor name" VerticalOptions="CenterAndExpand"/>
         </StackLayout>
-        <StackLayout Orientation="Horizontal" Margin="0,0,0,30">
+        <StackLayout Orientation="Horizontal" Margin="0,0,0,10">
             <Label Text="Date:" FontSize="Medium" VerticalOptions="CenterAndExpand" WidthRequest="120"/>
-            <DatePicker x:Name="TransactionDatePicker" Date="{Binding TransactionDate}" VerticalOptions="Center"/>
+            <DatePicker Date="{Binding TransactionDate}" VerticalOptions="Center"/>
         </StackLayout>
-        <StackLayout Orientation="Horizontal" Margin="0,0,0,30">
+        <StackLayout Orientation="Horizontal" Margin="0,0,0,10">
             <Label Text="Description:" FontSize="Medium" VerticalOptions="Start" WidthRequest="200"/>
             <Editor x:Name="DescriptionEntry" Text="{Binding Description}" Placeholder="Enter description" VerticalOptions="CenterAndExpand" AutoSize="TextChanges" WidthRequest="700" HeightRequest="150"/>
         </StackLayout>

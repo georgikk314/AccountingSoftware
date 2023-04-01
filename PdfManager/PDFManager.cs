@@ -21,20 +21,11 @@ namespace AccountingSoftware.PdfManager
 
             string outputPath = @"C:\pdf\" + name;
 
-            // Create a new PDF writer and bind it to a memory stream
-            //MemoryStream memStream = new MemoryStream();
             FileStream fileStream = new FileStream(outputPath, FileMode.Create);
             PdfWriter writer = PdfWriter.GetInstance(doc, fileStream);
 
             // Open the PDF document
             doc.Open();
-
-            //Type type = typeof(T);
-
-            //switch(type.Name)
-            //{
-
-            //  case "Inventory":
 
             foreach (var item in collection.Cast<Inventory>())
             {
@@ -48,25 +39,93 @@ namespace AccountingSoftware.PdfManager
                 }
             }
 
-            //    break;
-            // }
+            // Close the PDF document
+            doc.Close();
 
+            return outputPath;
+        }
 
+        public string PDFWriter(string name, List<Customers> customers, List<Transactions> transactions, List<Users> users, int userId, string customerName, DateTime StartDate, DateTime EndDate)
+        {
+            // Create a new PDF document
+            Document doc = new Document();
+
+            string outputPath = @"C:\pdf\" + name + ".pdf";
+
+            FileStream fileStream = new FileStream(outputPath, FileMode.Create);
+            PdfWriter writer = PdfWriter.GetInstance(doc, fileStream);
+
+            // Open the PDF document
+            doc.Open();
+            
+            Paragraph p = new Paragraph($"Invoice {name}");
+            p.Alignment = iTextSharp.text.Element.ALIGN_CENTER;
+            doc.Add(p);
+
+            Paragraph dates = new Paragraph($"From {StartDate.Day.ToString()}/{StartDate.Month.ToString()}/{StartDate.Year.ToString()} to {StartDate.Day.ToString()}/{StartDate.Month.ToString()}/{StartDate.Year.ToString()}");
+            dates.Alignment = iTextSharp.text.Element.ALIGN_CENTER;
+            doc.Add(dates);
+
+            foreach (var user in users)
+            {
+                if(user.UserId == userId)
+                {
+                    Paragraph pSellerName = new Paragraph($"Seller name: {user.Username}");
+                    doc.Add(pSellerName);
+                    //Paragraph p2 = new Paragraph() bulstat
+                }
+            }
+            
+
+            foreach (var customer in customers)
+            {
+                if (customer.UserId == userId && customer.Name == customerName)
+                { //we have fount our wanted customer
+                    Paragraph pCustomerName = new Paragraph($"Customer name: {customerName}");
+                    pCustomerName.Alignment = iTextSharp.text.Element.ALIGN_RIGHT;
+                    doc.Add(pCustomerName);
+
+                    Paragraph pAddress = new Paragraph($"Adress: {customer.Address}");
+                    pAddress.Alignment = iTextSharp.text.Element.ALIGN_RIGHT;
+                    doc.Add(pAddress);
+
+                    Paragraph pEmail = new Paragraph($"Email: {customer.Email}");
+                    pEmail.Alignment = iTextSharp.text.Element.ALIGN_RIGHT;
+                    doc.Add(pEmail);
+
+                    Paragraph pPhone = new Paragraph($"Phone: {customer.Phone}");
+                    pPhone.Alignment = iTextSharp.text.Element.ALIGN_RIGHT;
+                    doc.Add(pPhone);
+
+                    Paragraph space1 = new Paragraph(" ");
+                    doc.Add(space1);
+
+                    Paragraph description = new Paragraph($"Item name {"",5} Quantity {"",5} Price {"",5} Tax rate {"", 5} Total");
+                    doc.Add(description);
+
+                    foreach (var transaction in transactions)
+                    { //which transactions include him from a certain date to another
+                        if(transaction.CustomerName == customerName && StartDate.CompareTo(transaction.TransactionDate) <= 0 &&
+                            EndDate.CompareTo(transaction.TransactionDate) >= 0)
+                        {
+
+                            Paragraph space = new Paragraph(" ");
+                            doc.Add(space);
+
+                            Paragraph pTransaction = new Paragraph($"{transaction.ItemName} {"", 10} {transaction.Quantity} {"", 10} {transaction.Price:f2} lev {"", 10} 20% {"" , 10} {(transaction.Price * transaction.Quantity * 1.2):f2} lev");
+                            doc.Add(pTransaction);
+
+                        }
+                    }
+                }
+            }
 
             // Close the PDF document
             doc.Close();
 
-            // Convert the memory stream to a byte array
-            //byte[] pdfBytes = memStream.ToArray();
-
-            // Save the PDF file to disk
-            //File.WriteAllBytes(name, pdfBytes);
-
-            string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            string pdfFilePath = System.IO.Path.Combine(documentsPath, name);
-
             return outputPath;
         }
+
 
         public async Task PDFDownloader(string filePath)
         {

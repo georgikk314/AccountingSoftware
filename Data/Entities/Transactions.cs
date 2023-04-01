@@ -13,7 +13,9 @@ namespace AccountingSoftware.Data.Tables
         public int TransactionId { get; set; }
         public DateTime TransactionDate { get; set; }
         public string TransactionType { get; set; }
-        public double Amount { get; set; }
+        public string ItemName { get; set; }
+        public int Quantity { get; set; }
+        public double Price { get; set; }
         public string Description { get; set; }
         public string CustomerName { get; set; }
         public string VendorName { get; set; }

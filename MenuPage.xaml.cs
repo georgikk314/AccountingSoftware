@@ -36,7 +36,7 @@ public partial class MenuPage : ContentPage
 
     private async void OnInvoicesClicked(object sender, EventArgs e)
     {
-        await Application.Current.MainPage.Navigation.PushAsync(new Invoices());
+        await Application.Current.MainPage.Navigation.PushAsync(new Invoices(_dbContext, _userId));
     }
 
     private async void OnInventoryManagementClicked(object sender, EventArgs e)

@@ -55,7 +55,7 @@ public partial class InventoryManagement : ContentPage
     private async void OnDownloadPdfClicked(object sender, EventArgs e)
     {
         PDFManager PDF = new PDFManager();
-        string filepath = PDF.PDFWriter("test.pdf", _dbContext.Inventory.ToList(), _userId);
+        string filepath = PDF.PDFWriter("items.pdf", _dbContext.Inventory.ToList(), _userId);
         await PDF.PDFDownloader(filepath);
     }
 

@@ -25,16 +25,23 @@ namespace AccountingSoftware.Validations
                 }
                 else
                 {
-                    if (model.VendorOrCustomerName.IsNullOrEmpty() || model.AmountEntry.IsNullOrEmpty() || model.Description.IsNullOrEmpty())
+                    if (model.VendorOrCustomerName.IsNullOrEmpty() || model.Price.IsNullOrEmpty() || model.Description.IsNullOrEmpty() || model.ItemName.IsNullOrEmpty() || model.Quantity.IsNullOrEmpty())
                     {
                         isValid = false;
                         model.IsEmptyFieldsMessageVisible = true;
                     }
 
-                    if (double.Parse(model.AmountEntry) <= 0)
+                    if (double.Parse(model.Price) <= 0 || int.Parse(model.Quantity) <= 0)
                     {
                         isValid = false;
                         model.IsWrongAmountEnteredMessageVisible = true;
+                    }
+                    
+                    isValid = false;
+                    model.IsNonExistingCustomerMessageVisible = true;
+                    foreach (var item in dbContext.Inventory)
+                    {
+                        if (item.ItemName == model.ItemName) { isValid = true; break; }
                     }
 
                     switch (model.TransactionType)
@@ -52,7 +59,9 @@ namespace AccountingSoftware.Validations
                                     dbContext.Add(new Transactions()
                                     {
                                         TransactionDate = model.TransactionDate,
-                                        Amount = double.Parse(model.AmountEntry),
+                                        ItemName = model.ItemName,
+                                        Quantity = int.Parse(model.Quantity),
+                                        Price = double.Parse(model.Price),
                                         Description = model.Description,
                                         CustomerName = null,
                                         VendorName = model.VendorOrCustomerName,
@@ -77,7 +86,9 @@ namespace AccountingSoftware.Validations
                                     {
                                         TransactionDate = model.TransactionDate,
                                         TransactionType = model.TransactionType,
-                                        Amount = double.Parse(model.AmountEntry),
+                                        ItemName = model.ItemName,
+                                        Quantity = int.Parse(model.Quantity),
+                                        Price = double.Parse(model.Price),
                                         Description = model.Description,
                                         CustomerName = model.VendorOrCustomerName,
                                         VendorName = null,

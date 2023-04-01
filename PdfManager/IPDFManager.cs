@@ -10,6 +10,7 @@ namespace AccountingSoftware.PdfManager
     public interface IPDFManager
     {
         string PDFWriter(string name, List<Inventory> content, int userId);
+        string PDFWriter(string name, List<Customers> customers, List<Transactions> transactions, List<Users> users, int userId, string customerName, DateTime StartDate, DateTime EndDate);
         Task PDFDownloader(string filename);
     }
 }

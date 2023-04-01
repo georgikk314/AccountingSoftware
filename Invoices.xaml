@@ -4,21 +4,27 @@
              x:Class="AccountingSoftware.Invoices"
              Title="">
     <StackLayout>
-        <Label Text="Product or Service Description:" />
-        <Editor x:Name="DescriptionEntry" HeightRequest="100" 
-               WidthRequest="500"
-               HorizontalOptions="Start"
-               CursorPosition="0"
-          Margin="0,0,0,20" />
+        <StackLayout Orientation="Horizontal" Margin="20">
+            <Label Text="Client name:" FontSize="Medium"></Label>
+            <Entry Text="{Binding ClientName}" Margin="20,0,0,0" Placeholder="Enter the client name" FontSize="Medium"></Entry>
+        </StackLayout>
 
-        <Label Text="Price:" />
-        <Entry x:Name="PriceEntry" WidthRequest="200"
-               HorizontalOptions="Start"
-               Keyboard="Numeric" Margin="0,0,0,20" />
+        <StackLayout Orientation="Horizontal" Margin="20">
+            <Label Text="From:" FontSize="Medium"></Label>
+            <DatePicker Date ="{Binding StartDate}" Margin="20,0,0,0"></DatePicker>
+        </StackLayout>
 
-        <Label Text="Payment Terms:" />
-        <Entry x:Name="PaymentTermsEntry" Margin="0,0,0,20" />
+        <StackLayout Orientation="Horizontal" Margin="20">
+            <Label Text="To:" FontSize="Medium"></Label>
+            <DatePicker Date="{Binding EndDate}" Margin="20,0,0,0"></DatePicker>
+        </StackLayout>
 
-        <Button Text="Generate Invoice" Clicked="OnGenerateInvoiceClicked" WidthRequest="200" Margin="0,0,0,20"/>
+        <StackLayout Orientation="Horizontal" Margin="20">
+            <Label Text="Successfully downloaded the Invoice in Documents folder!" TextColor="Blue" FontSize="Medium" IsVisible="{Binding IsInvoiceDownloadedMessageVisible}"/>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal" Margin="20">
+            <Button Text="Generate Invoice" Command="{Binding OnGenerateInvoiceClicked}"></Button>
+        </StackLayout>
     </StackLayout>
 </ContentPage>

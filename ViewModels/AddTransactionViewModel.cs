@@ -16,18 +16,9 @@ namespace AccountingSoftware.ViewModels
 
         public int TransactionId { get; set; }
         public DateTime TransactionDate { get; set; }
-        public string AmountEntry { get; set; }
-        public double Amount 
-        { 
-            get
-            {
-                return _amount;
-            }
-            set
-            {
-                _amount = double.Parse(AmountEntry);
-            }
-        }
+        public string Price { get; set; }
+        public string Quantity { get; set; }
+        public string ItemName { get; set; }
         public string Description { get; set; }
         public string VendorOrCustomerName { get; set; }
         public string TransactionType { get; set; }
@@ -124,7 +115,7 @@ namespace AccountingSoftware.ViewModels
         {
             RecordTransactionValidation.Validation(_dbContext, this, _userId);
             Description = "";
-            AmountEntry = "";
+            
 
             await _dbContext.SaveChangesAsync();
 

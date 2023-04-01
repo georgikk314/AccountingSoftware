@@ -39,21 +39,6 @@ namespace AccountingSoftware.ViewModels
             _dbContext = dbContext;
             _userId = userId;
         }
-        /*
-        public void SearchItem(object sender, EventArgs e)
-        {
-                foreach (var item in Items)
-                {
-                    if(item.UserId == _userId && item.ItemName.Contains(SearchText))
-                    {
-                        Application.Current
-                        .MainPage
-                        .Navigation.PushAsync(new InventoryManagement(_dbContext, this, _userId));
-                    }
-                }
-                
-                
-            }*/
         
 
         public void Notify()
