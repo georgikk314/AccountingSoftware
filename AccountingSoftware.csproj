@@ -49,6 +49,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <PackageReference Include="iTextSharp" Version="5.5.13.3" />
 	  <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.15" />
 	  <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.15" />
 	  <PackageReference Include="XAct.Core.PCL" Version="0.0.5014" />

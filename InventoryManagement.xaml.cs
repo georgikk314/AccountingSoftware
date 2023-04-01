@@ -1,5 +1,6 @@
 using AccountingSoftware.Data;
 using AccountingSoftware.Data.Tables;
+using AccountingSoftware.PdfManager;
 using AccountingSoftware.ViewModels;
 
 namespace AccountingSoftware;
@@ -51,9 +52,11 @@ public partial class InventoryManagement : ContentPage
         await Application.Current.MainPage.Navigation.PushAsync(new AddItemPage(_dbContext, _userId));
     }
 
-    private void OnDownloadPdfClicked(object sender, EventArgs e)
+    private async void OnDownloadPdfClicked(object sender, EventArgs e)
     {
-        //TODO:
+        PDFManager PDF = new PDFManager();
+        string filepath = PDF.PDFWriter("test.pdf", _dbContext.Inventory.ToList(), _userId);
+        await PDF.PDFDownloader(filepath);
     }
 
     protected override void OnAppearing()
