@@ -44,11 +44,6 @@ public partial class MenuPage : ContentPage
         await Application.Current.MainPage.Navigation.PushAsync(new InventoryManagement(_dbContext, new InventoryViewModel(), _userId));
     }
 
-    private async void OnGenerateFinancialReportsClicked(object sender, EventArgs e)
-    {
-        await Application.Current.MainPage.Navigation.PushAsync(new GenerateFinancialReports());
-    }
-
     private void OnExitClicked(object sender, EventArgs e)
     {
         Application.Current.Quit();
