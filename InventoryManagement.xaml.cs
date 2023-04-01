@@ -13,6 +13,7 @@ public partial class InventoryManagement : ContentPage
 	public InventoryManagement(AccountingSoftwareContext dbContext, InventoryViewModel model, int userId)
 	{
 		InitializeComponent();
+        IsReportDownloadedMessageVisible.IsVisible = false;
         _dbContext = dbContext;
         _userId = userId;
         _model = model;
@@ -22,6 +23,7 @@ public partial class InventoryManagement : ContentPage
     public InventoryManagement(AccountingSoftwareContext dbContext, int userId, List<Inventory> showedItems)
     {
         InitializeComponent();
+        IsReportDownloadedMessageVisible.IsVisible = false;
         _dbContext = dbContext;
         _userId = userId;
         _model = new InventoryViewModel(dbContext, _userId, showedItems);
@@ -57,6 +59,7 @@ public partial class InventoryManagement : ContentPage
         PDFManager PDF = new PDFManager();
         string filepath = PDF.PDFWriter("items.pdf", _dbContext.Inventory.ToList(), _userId);
         await PDF.PDFDownloader(filepath);
+        IsReportDownloadedMessageVisible.IsVisible = true;
     }
 
     protected override void OnAppearing()

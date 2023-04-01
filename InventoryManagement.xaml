@@ -48,6 +48,7 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
 
+        <Label x:Name="IsReportDownloadedMessageVisible" Text="Successfully downloaded the pdf report of the items!" TextColor="Blue" FontSize="Medium" IsVisible="false"></Label>
         <!-- Add Item Button -->
         <Button Text="Add Item" FontSize="Large" HorizontalOptions="CenterAndExpand" Clicked="OnAddItemClicked"/>
 
