@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using XAct;
+using static iTextSharp.text.pdf.AcroFields;
 
 namespace AccountingSoftware.Validations
 {
@@ -36,14 +37,15 @@ namespace AccountingSoftware.Validations
                         isValid = false;
                         model.IsWrongAmountEnteredMessageVisible = true;
                     }
-                    
-                    isValid = false;
-                    model.IsNonExistingItemMessageVisible = true;
 
                     foreach (var transaction in dbContext.Transactions)
                     {
-                        if(transaction.CustomerName != null) //this validation is only for customers
+                        
+                        if(transaction.CustomerName == model.VendorOrCustomerName && transaction.UserId == userId) //this validation is only for customers
                         {
+                            isValid = false;
+                            model.IsNonExistingItemMessageVisible = true;
+
                             foreach (var item in dbContext.Inventory)
                             {
                                 if (item.ItemName == model.ItemName) //wanted item is in the inventory
@@ -70,7 +72,7 @@ namespace AccountingSoftware.Validations
 
                                 isValid = false;
                                 model.IsNonExistingVendorMessageVisible = true;
-                                foreach (var vendor in dbContext.Vendors)
+                                foreach (var vendor in dbContext.Vendors) //find the wanted vendor
                                 {
                                     if (vendor.Name == model.VendorOrCustomerName && vendor.UserId == userId)
                                     {
@@ -79,6 +81,7 @@ namespace AccountingSoftware.Validations
                                         dbContext.Add(new Transactions()
                                         {
                                             TransactionDate = model.TransactionDate,
+                                            TransactionType = model.TransactionType,
                                             ItemName = model.ItemName,
                                             Quantity = int.Parse(model.Quantity),
                                             Price = double.Parse(model.Price),
@@ -87,6 +90,17 @@ namespace AccountingSoftware.Validations
                                             VendorName = model.VendorOrCustomerName,
                                             UserId = userId
                                         });
+
+                                        dbContext.Add(new Inventory()
+                                        {
+                                            ItemName = model.ItemName,
+                                            QuantityInStock = int.Parse(model.Quantity),
+                                            Cost = double.Parse(model.Price),
+                                            SellingPrice = double.Parse(model.Price),
+                                            Description = null,
+                                            UserId = userId
+                                        });
+
                                     }
                                 }
 
@@ -98,7 +112,7 @@ namespace AccountingSoftware.Validations
                                 model.IsNonExistingCustomerMessageVisible = true;
                                 foreach (var customer in dbContext.Customers)
                                 {
-                                    if (customer.Name == model.VendorOrCustomerName)
+                                    if (customer.Name == model.VendorOrCustomerName && customer.UserId == userId)
                                     {
                                         isValid = true;
                                         model.IsNonExistingCustomerMessageVisible = false;
@@ -114,6 +128,21 @@ namespace AccountingSoftware.Validations
                                             VendorName = null,
                                             UserId = userId
                                         });
+
+                                        foreach (var item in dbContext.Inventory)
+                                        {
+                                            if (item.ItemName == model.ItemName)
+                                            {
+                                                if (item.QuantityInStock == int.Parse(model.Quantity))
+                                                {
+                                                    dbContext.Remove(item);
+                                                }
+                                                else
+                                                {
+                                                    item.QuantityInStock = item.QuantityInStock - int.Parse(model.Quantity);
+                                                }
+                                            }
+                                        }
                                     }
                                 }
 

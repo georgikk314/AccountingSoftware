@@ -5,7 +5,7 @@
              Title="">
 
     <StackLayout>
-                <Label Text="Welcome to Accounting Software!" 
+                <Label Text="Financial Overview" 
                FontAttributes="Bold" 
                FontSize="Medium" 
                Margin="10,20" />

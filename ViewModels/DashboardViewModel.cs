@@ -163,15 +163,18 @@ namespace AccountingSoftware.ViewModels
                     foreach (var transaction in dbContext.Transactions)
                     {
                         Transactions.Add(transaction);
-                        if (transaction.TransactionType == "Expense")
+                        if (transaction.UserId == userId)
                         {
-                            totalProf = totalProf - transaction.Quantity * transaction.Price;
+                            if (transaction.TransactionType == "Expense")
+                            {
+                                totalProf = totalProf - transaction.Quantity * transaction.Price;
 
-                        }
+                            }
 
-                        if (transaction.TransactionType == "Income")
-                        {
-                            totalProf = totalProf + transaction.Quantity * transaction.Price;
+                            if (transaction.TransactionType == "Income")
+                            {
+                                totalProf = totalProf + transaction.Quantity * transaction.Price;
+                            }
                         }
                     }
                     totalProf = totalProf - totalBal;
