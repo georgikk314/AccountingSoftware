@@ -12,6 +12,7 @@ namespace AccountingSoftware.ViewModels
     public class InvoiceViewModel : BindableObject
     {
         public string ClientName { get; set; }
+        public string NumberOfInvoice { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
 
@@ -40,8 +41,16 @@ namespace AccountingSoftware.ViewModels
 
         public ICommand OnGenerateInvoiceClicked => new Command(async () =>
         {
+            int characters = NumberOfInvoice.Length;
+            if(characters < 10)
+            {
+                for (int i = 0; i < 10 - characters; i++)
+                {
+                    NumberOfInvoice = NumberOfInvoice.Insert(0, "0");
+                }
+            }
             PDFManager PDF = new PDFManager();
-            string filepath = PDF.PDFWriter("0000000002", _dbContext.Customers.ToList(), _dbContext.Transactions.ToList(), _dbContext.Users.ToList(), _userId, ClientName, StartDate, EndDate);
+            string filepath = PDF.PDFWriter(NumberOfInvoice, _dbContext.Customers.ToList(), _dbContext.Transactions.ToList(), _dbContext.Users.ToList(), _userId, ClientName, StartDate, EndDate);
             await PDF.PDFDownloader(filepath);
             IsInvoiceDownloadedMessageVisible = true;
             

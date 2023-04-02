@@ -10,6 +10,11 @@
         </StackLayout>
 
         <StackLayout Orientation="Horizontal" Margin="20">
+            <Label Text="Invoice number:" FontSize="Medium"></Label>
+            <Entry Text="{Binding NumberOfInvoice}" Margin="20,0,0,0" Placeholder="Enter the invoice number" FontSize="Medium"></Entry>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal" Margin="20">
             <Label Text="From:" FontSize="Medium"></Label>
             <DatePicker Date ="{Binding StartDate}" Margin="20,0,0,0"></DatePicker>
         </StackLayout>
