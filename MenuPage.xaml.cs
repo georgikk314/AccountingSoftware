@@ -16,7 +16,7 @@ public partial class MenuPage : ContentPage
 
     private async void OnDashboardClicked(object sender, EventArgs e)
     {
-        await Application.Current.MainPage.Navigation.PushAsync(new Dashboard());
+        await Application.Current.MainPage.Navigation.PushAsync(new Dashboard(_dbContext, _userId));
     }
 
     private async void OnClientManagementClicked(object sender, EventArgs e)
