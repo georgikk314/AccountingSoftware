@@ -29,7 +29,7 @@
         </StackLayout>
 
         <StackLayout Orientation="Horizontal" Margin="20">
-            <Button Text="Generate Invoice" Command="{Binding OnGenerateInvoiceClicked}"></Button>
+            <Button Text="Generate Invoice" FontSize="Medium" HorizontalOptions="CenterAndExpand" Command="{Binding OnGenerateInvoiceClicked}"></Button>
         </StackLayout>
     </StackLayout>
 </ContentPage>
