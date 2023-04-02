@@ -19,7 +19,7 @@
             </Picker>
         </StackLayout>
         <StackLayout Orientation="Horizontal" Margin="0,0,0,10">
-            <Label Text="Item name:" FontSize="Medium" VerticalOptions="CenterAndExpand" WidthRequest="250"/>
+            <Label Text="Item name:" FontSize="Medium" VerticalOptions="CenterAndExpand" WidthRequest="150"/>
             <Entry Text="{Binding ItemName}" Placeholder="Enter item name" Keyboard="Numeric" VerticalOptions="CenterAndExpand"/>
         </StackLayout>
         <StackLayout Orientation="Horizontal" Margin="0,0,0,10">

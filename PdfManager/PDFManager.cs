@@ -36,6 +36,7 @@ namespace AccountingSoftware.PdfManager
                     doc.Add(new Paragraph($"Cost: {item.Cost:f2} lev"));
                     doc.Add(new Paragraph($"Selling Price: {item.SellingPrice:f2} lev"));
                     doc.Add(new Paragraph($"Description: {item.Description}"));
+                    doc.Add(new Paragraph(" "));
                 }
             }
 

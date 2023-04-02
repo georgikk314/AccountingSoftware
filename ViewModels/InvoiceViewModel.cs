@@ -13,8 +13,24 @@ namespace AccountingSoftware.ViewModels
     {
         public string ClientName { get; set; }
         public string NumberOfInvoice { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
+
+        private DateTime _startDate = DateTime.Today;
+        public DateTime StartDate 
+        {
+            get
+            { return _startDate; }
+            set { _startDate = value; }
+        }
+
+        private DateTime _endDate = DateTime.Today;
+        public DateTime EndDate
+        {
+            get
+            {
+                return _endDate;
+            }
+            set { _endDate = value; }
+        }
 
         private bool _isInvoiceDownloadedMessageVisible = false;
 

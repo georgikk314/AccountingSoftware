@@ -13,7 +13,19 @@ namespace AccountingSoftware.ViewModels
     public class AddTransactionViewModel : BindableObject
     {
         public int TransactionId { get; set; }
-        public DateTime TransactionDate { get; set; }
+
+        private DateTime _transactionDate = DateTime.Today;
+        public DateTime TransactionDate 
+        {   
+            get
+            {
+                return _transactionDate;
+            }
+            set
+            {
+                _transactionDate = value;
+            }
+        }
         public string Price { get; set; }
         public string Quantity { get; set; }
         public string ItemName { get; set; }
