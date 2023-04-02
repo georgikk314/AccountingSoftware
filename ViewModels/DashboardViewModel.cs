@@ -146,31 +146,38 @@ namespace AccountingSoftware.ViewModels
 
             double totalRev = 0.00;
             double totalBal = 0.00;
-            foreach (var item in dbContext.Inventory)
-            {
-                totalRev += item.SellingPrice * item.QuantityInStock;
-                totalBal += item.Cost * item.QuantityInStock;
-            }
-            TotalRevenue = Math.Round(totalRev, 2).ToString();
-            Balance = Math.Round(totalBal, 2).ToString();
-
             double totalProf = 0.00;
-            foreach (var transaction in dbContext.Transactions)
-            {
-                Transactions.Add(transaction);
-                if (transaction.TransactionType == "Expense") 
-                {
-                    totalProf = totalProf - transaction.Quantity * transaction.Price;
-                    
-                }
 
-                if (transaction.TransactionType == "Income")
+            foreach (var user in dbContext.Users)
+            {
+                if (user.UserId == userId)
                 {
-                    totalProf = totalProf + transaction.Quantity * transaction.Price;
+                    foreach (var item in dbContext.Inventory)
+                    {
+                        totalRev += item.SellingPrice * item.QuantityInStock;
+                        totalBal += item.Cost * item.QuantityInStock;
+                    }
+                    TotalRevenue = Math.Round(totalRev, 2).ToString();
+                    Balance = Math.Round(totalBal, 2).ToString();
+
+                    foreach (var transaction in dbContext.Transactions)
+                    {
+                        Transactions.Add(transaction);
+                        if (transaction.TransactionType == "Expense")
+                        {
+                            totalProf = totalProf - transaction.Quantity * transaction.Price;
+
+                        }
+
+                        if (transaction.TransactionType == "Income")
+                        {
+                            totalProf = totalProf + transaction.Quantity * transaction.Price;
+                        }
+                    }
+                    totalProf = totalProf - totalBal;
+                    Profit = Math.Round(totalProf, 2).ToString();
                 }
             }
-            totalProf = totalProf - totalBal;
-            Profit = Math.Round(totalProf, 2).ToString();
         }
 
         public void Notify()
