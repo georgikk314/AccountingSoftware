@@ -9,8 +9,17 @@
         <!-- Search Bar -->
         <SearchBar SearchButtonPressed="SearchItem" x:Name="SearchText" Text="{Binding SearchText}" Placeholder="Search items" Margin="0,0,0,20" />
 
+
+        <Label x:Name="IsReportDownloadedMessageVisible" Text="Successfully downloaded the pdf report of the items!" TextColor="Blue" FontSize="Medium" IsVisible="false"></Label>
+        <!-- Add Item Button -->
+        <Button Text="Add Item" FontSize="Large" HorizontalOptions="CenterAndExpand" Clicked="OnAddItemClicked"/>
+
+        <!-- Download PDF Button -->
+        <Button Text="Download PDF Report" FontSize="Large" HorizontalOptions="CenterAndExpand" Clicked="OnDownloadPdfClicked"/>
+
+
         <!-- Items List -->
-        <CollectionView ItemsSource="{Binding Items}" SelectionMode="Single" Margin="0,0,0,20">
+        <CollectionView ItemsSource="{Binding Items}" VerticalOptions="FillAndExpand" SelectionMode="Single" Margin="0,0,0,20">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Grid Padding="10">
@@ -48,11 +57,5 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
 
-        <Label x:Name="IsReportDownloadedMessageVisible" Text="Successfully downloaded the pdf report of the items!" TextColor="Blue" FontSize="Medium" IsVisible="false"></Label>
-        <!-- Add Item Button -->
-        <Button Text="Add Item" FontSize="Large" HorizontalOptions="CenterAndExpand" Clicked="OnAddItemClicked"/>
-
-        <!-- Download PDF Button -->
-        <Button Text="Download PDF Report" FontSize="Large" HorizontalOptions="CenterAndExpand" Clicked="OnDownloadPdfClicked"/>
     </StackLayout>
 </ContentPage>

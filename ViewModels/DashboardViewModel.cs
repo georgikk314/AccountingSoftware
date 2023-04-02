@@ -65,76 +65,6 @@ namespace AccountingSoftware.ViewModels
             }
         }
 
-        /*
-        private string _clientName;
-        public string ClientName
-        {
-            get
-            {
-                return _clientName;
-            }
-            set { OnPropertyChanged(nameof(ClientName));}
-        }
-
-        private string _transactionType;
-        public string TransactionType
-        {
-            get
-            {
-                return _transactionType;
-            }
-            set
-            {
-                OnPropertyChanged(nameof(TransactionType));
-            }
-        }
-
-        private DateTime _transactionDate;
-        public DateTime TransactionDate
-        {
-            get
-            {
-                return _transactionDate;
-            }
-            set { OnPropertyChanged(nameof(TransactionDate));}
-        }
-
-        private string _itemName;
-        public string ItemName
-        {
-            get
-            {
-                return _itemName;
-            }
-            set
-            {
-                OnPropertyChanged(nameof(_itemName));
-            }
-        }
-
-        private string _quantity;
-        public string Quantity
-        {
-            get
-            {
-                return _quantity;
-            }
-            set
-            {
-                OnPropertyChanged(nameof(Quantity));
-            }
-        }
-
-        private string _price;
-        public string Price
-        {
-            get
-            {
-                return _price;
-            }
-            set { OnPropertyChanged(nameof(Price));}
-        }*/
-
         private readonly AccountingSoftwareContext _dbContext;
         private int _userId;
 
@@ -177,7 +107,7 @@ namespace AccountingSoftware.ViewModels
                             }
                         }
                     }
-                    totalProf = totalProf - totalBal;
+                    
                     Profit = Math.Round(totalProf, 2).ToString();
                 }
             }
