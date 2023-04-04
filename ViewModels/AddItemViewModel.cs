@@ -1,4 +1,5 @@
 ﻿using AccountingSoftware.Data;
+using AccountingSoftware.Data.Tables;
 using AccountingSoftware.Validations;
 using System;
 using System.Collections.Generic;
@@ -11,12 +12,42 @@ namespace AccountingSoftware.ViewModels
 {
     public class AddItemViewModel : BindableObject
     {
-        public string ItemName { get; set; }
-        public string Description { get; set; }
-        public string Cost { get; set; }
-        public string SellingPrice { get; set; }
-        public string QuantityInStock { get; set; }
+        private string _itemName;
+        public string ItemName
+        {
+            get
+            {
+                return _itemName;
+            }
+            set
+            {
+                _itemName = value;
+            }
+        }
 
+        private string _description;
+        public string Description
+        {
+            get
+            {
+                return _description;
+            }
+            set { _description = value; }
+        }
+
+        private string _sellingPrice;
+        public string SellingPrice
+        {
+            get
+            {
+                return _sellingPrice;
+            }
+            set
+            {
+                _sellingPrice = value;
+            }
+        }
+        
         private bool _isEmptyFieldsMessageVisible = false;
 
         //property for access to this element in different classes
@@ -57,15 +88,27 @@ namespace AccountingSoftware.ViewModels
         }
         private readonly AccountingSoftwareContext _dbContext;
         private int _userId;
-        public AddItemViewModel(AccountingSoftwareContext dbContext, int userId)
+        private Inventory _selectedItem;
+        public AddItemViewModel(AccountingSoftwareContext dbContext, int userId, InventoryViewModel itemModel)
         {
             _dbContext = dbContext;
             _userId = userId;
+            Inventory selectedItem = itemModel.SelectedItem;
+            if(selectedItem != null)
+            {
+                _selectedItem = selectedItem;
+                _itemName = _selectedItem.ItemName;
+                _sellingPrice = _selectedItem.SellingPrice.ToString();
+                _description = _selectedItem.Description;
+                
+            }
+
         }
 
-        public ICommand OnAddClicked => new Command(async () =>
+        public ICommand OnEditClicked => new Command(async () =>
         {
-            AddItemValidation.Validation(_dbContext, this, _userId);
+            
+            AddItemValidation.Validation(_dbContext, this, _userId, _selectedItem);
             
 
             await _dbContext.SaveChangesAsync();

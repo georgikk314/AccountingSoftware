@@ -8,22 +8,11 @@
             <Label Text="Item name: " Margin="0,0,20,0" FontSize="Medium"></Label>
             <Entry Text="{Binding ItemName}" FontSize="Medium" Placeholder="Type the item's name"></Entry>
         </StackLayout>
-        
-        <StackLayout Margin="20" Orientation="Horizontal">
-            <Label Text="Cost:" Margin="0,0,20,0" FontSize="Medium"></Label>
-            <Entry Text="{Binding Cost}" FontSize="Medium" Placeholder="Type the item's cost" Margin="0,0,20,0"></Entry>
-            <Label Text="lev." FontSize="Medium"></Label>
-        </StackLayout>
-        
+
         <StackLayout Margin="20" Orientation="Horizontal">
             <Label Text="Selling price: " Margin="0,0,20,0" FontSize="Medium"></Label>
             <Entry Text="{Binding SellingPrice}" FontSize="Medium" Placeholder="Type the item's selling price" Margin="0,0,20,0"></Entry>
             <Label Text="lev." FontSize="Medium"></Label>
-        </StackLayout>
-        
-        <StackLayout Margin="20" Orientation="Horizontal">
-            <Label Text="Quantity: " Margin="0,0,20,0" FontSize="Medium"></Label>
-            <Entry Text="{Binding QuantityInStock}" FontSize="Medium" Placeholder="Type the item's quantity"></Entry>
         </StackLayout>
 
         <StackLayout Margin="20" Orientation="Horizontal">
@@ -37,7 +26,7 @@
         </StackLayout>
         
         <StackLayout Orientation="Horizontal">
-            <Button Text="Add" HorizontalOptions="CenterAndExpand" FontSize="Medium" WidthRequest="200" Command="{Binding OnAddClicked}"></Button>
+            <Button Text="Edit" HorizontalOptions="CenterAndExpand" FontSize="Medium" WidthRequest="200" Command="{Binding OnEditClicked}"></Button>
         </StackLayout>
         
         

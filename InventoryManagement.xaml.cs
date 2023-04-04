@@ -49,9 +49,14 @@ public partial class InventoryManagement : ContentPage
 
     }
 
-    private async void OnAddItemClicked(object sender, EventArgs e)
+    private async void OnEditItemClicked(object sender, EventArgs e)
     {
-        await Application.Current.MainPage.Navigation.PushAsync(new AddItemPage(_dbContext, _userId));
+        if(collView.SelectedItem == null) return;
+        else
+        {
+            await Application.Current.MainPage.Navigation.PushAsync(new AddItemPage(_dbContext, _userId, _model));
+        }
+       
     }
 
     private async void OnDownloadPdfClicked(object sender, EventArgs e)

@@ -15,6 +15,9 @@ namespace AccountingSoftware.ViewModels
 {
     public class InventoryViewModel : BindableObject, INotifyPropertyChanged
     {
+
+
+
         private ObservableCollection<Inventory> _items;
         public ObservableCollection<Inventory> Items
         {
@@ -25,13 +28,21 @@ namespace AccountingSoftware.ViewModels
                 OnPropertyChanged(nameof(Items));
             }
         }
+
+        private Inventory _selectedItem;
+        public Inventory SelectedItem
+        {
+            get { return _selectedItem; }
+            set { _selectedItem = value; }
+        }
+
         public string SearchText { get; set; }
 
         private readonly AccountingSoftwareContext _dbContext;
         private int _userId;
         public InventoryViewModel()
         {
-
+                
         }
         public InventoryViewModel(AccountingSoftwareContext dbContext, int userId, List<Inventory> showedItems) 
         {
