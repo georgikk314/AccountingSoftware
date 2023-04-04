@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace AccountingSoftware.ViewModels
 {
@@ -65,6 +66,13 @@ namespace AccountingSoftware.ViewModels
             }
         }
 
+        public ICommand ItemDoubleTappedCommand
+        {
+            get; private set;
+        }
+
+
+
         private readonly AccountingSoftwareContext _dbContext;
         private int _userId;
 
@@ -111,8 +119,15 @@ namespace AccountingSoftware.ViewModels
                     Profit = Math.Round(totalProf, 2).ToString();
                 }
             }
-        }
 
+            ItemDoubleTappedCommand = new Command<object>(async (object item) =>
+            {
+                await Application.Current.MainPage.Navigation.PushAsync(new RecordTransactions(dbContext, userId));
+            });
+
+
+        }
+        
         public void Notify()
         {
             OnPropertyChanged(nameof(Transactions));

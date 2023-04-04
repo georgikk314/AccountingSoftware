@@ -16,7 +16,8 @@ public partial class Dashboard : ContentPage
 		_model = new DashboardViewModel(dbContext, userId);
 		BindingContext = _model;
 
-	}
+    }
+
 
     protected override void OnAppearing()
     {

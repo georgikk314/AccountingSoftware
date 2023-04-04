@@ -54,5 +54,53 @@ namespace AccountingSoftware.Validations
                 });
             }
         }
+
+
+        public static void Validation(AccountingSoftwareContext dbContext, EditVendorViewModel model, int userId, Vendors selectedItem)
+        {
+            bool isValid = true;
+            model.IsEmptyFieldsMessageVisible = false;
+            model.IsNotCorrectEmailMessageVisible = false;
+            model.IsNotCorrectPhoneMessageVisible = false;
+            model.IsAddedVendorVisible = false;
+
+            if (string.IsNullOrEmpty(model.Address) || string.IsNullOrEmpty(model.Phone) || string.IsNullOrEmpty(model.Name) || string.IsNullOrEmpty(model.Email))
+            {
+                model.IsEmptyFieldsMessageVisible = true;
+                isValid = false;
+                return;
+            }
+
+            if (!Regex.IsMatch(model.Email, "^[a-zA-Z0-9.!#$%&'*+\\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$"))
+            {
+                model.IsNotCorrectEmailMessageVisible = true;
+                isValid = false;
+                return;
+            }
+
+            if (!Regex.IsMatch(model.Phone, "[0-9]"))
+            {
+                model.IsNotCorrectPhoneMessageVisible = true;
+                isValid = false;
+                return;
+            }
+
+            if (isValid)
+            {
+                
+
+                foreach (var vendor in dbContext.Vendors)
+                {
+                    if (vendor.UserId == userId && vendor.Name == selectedItem.Name)
+                    {
+                        model.IsAddedVendorVisible = true;
+                        //vendor.Name = model.Name;
+                        vendor.Email = model.Email;
+                        vendor.Address = model.Address;
+                        vendor.Phone = model.Phone;
+                    }
+                }
+            }
+        }
     }
 }

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AccountingSoftware.EditVendorManagement"
+             Title="">
+    <StackLayout Margin="20">
+        <Label Text="Vendor Management" FontSize="Large" HorizontalOptions="CenterAndExpand" Margin="0,0,0,20"/>
+        <StackLayout Orientation="Horizontal" Margin="0,0,0,20">
+            <Label Text="Vendor Name:" FontSize="Medium" VerticalOptions="Center"/>
+            <Entry x:Name="VendorNameEntry" Text="{Binding Name}" Placeholder="Enter vendor name" VerticalOptions="CenterAndExpand" WidthRequest="300" />
+        </StackLayout>
+        <StackLayout Orientation="Horizontal" Margin="0,0,0,20">
+            <Label Text="Email:" FontSize="Medium" VerticalOptions="Center"/>
+            <Entry x:Name="EmailEntry" Text="{Binding Email}" Placeholder="Enter email" VerticalOptions="CenterAndExpand" WidthRequest="300" />
+        </StackLayout>
+        <StackLayout Orientation="Horizontal" Margin="0,0,0,20">
+            <Label Text="Phone Number:" FontSize="Medium" VerticalOptions="Center"/>
+            <Entry x:Name="PhoneNumberEntry" Text="{Binding Phone}" Placeholder="Enter phone number" Keyboard="Numeric" VerticalOptions="CenterAndExpand" WidthRequest="300" />
+        </StackLayout>
+        <StackLayout Orientation="Horizontal" Margin="0,0,0,20">
+            <Label Text="Address:" FontSize="Medium" VerticalOptions="Start"/>
+            <Editor x:Name="AddressEditor" Text="{Binding Address}" Placeholder="Enter address" HeightRequest="120" WidthRequest="300" VerticalOptions="CenterAndExpand"/>
+        </StackLayout>
+        <StackLayout>
+            <Label Text="There are empty fields!" FontSize="Medium" TextColor="Red" IsVisible="{Binding IsEmptyFieldsMessageVisible}"></Label>
+            <Label Text="You have entered wrong email address!" FontSize="Medium" TextColor="Red" IsVisible="{Binding IsNotCorrectEmailMessageVisible}"></Label>
+            <Label Text="You have entered wrong phone!" FontSize="Medium" TextColor="Red" IsVisible="{Binding IsNotCorrectPhoneMessageVisible}"></Label>
+            <Label Text="Successfully updated the vendor!" FontSize="Medium" TextColor="Blue" IsVisible="{Binding IsAddedVendorVisible}"></Label>
+        </StackLayout>
+
+        <Button Text="Save Vendor" FontSize="Large" HorizontalOptions="CenterAndExpand" Command="{Binding OnEditVendorClicked}"/>
+    </StackLayout>
+</ContentPage>

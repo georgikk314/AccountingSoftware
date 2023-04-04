@@ -72,11 +72,18 @@
                FontSize="Medium" 
                Margin="10,20" />
 
-                <ListView ItemsSource="{Binding Transactions}" Margin="10" SeparatorVisibility="None">
+                <ListView x:Name="TransactionsListView" ItemsSource="{Binding Transactions}" Margin="10" SeparatorVisibility="None" >
+                    
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
+                        
                         <StackLayout BackgroundColor="#F5F5F5" Padding="10" Orientation="Horizontal">
+                            <StackLayout.GestureRecognizers>
+                                
+                                <TapGestureRecognizer Command="{Binding ItemDoubleTappedCommand}" CommandParameter="."
+                              NumberOfTapsRequired="2" />
+                            </StackLayout.GestureRecognizers>
                             <StackLayout HorizontalOptions="StartAndExpand" VerticalOptions="Center">
                                 <Label Text="{Binding CustomerName}"
                                        FontAttributes="Bold"
