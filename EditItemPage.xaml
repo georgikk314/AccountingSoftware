@@ -22,7 +22,7 @@
         <StackLayout>
             <Label Text="You have empty fields!" FontSize="Medium" TextColor="Red" IsVisible="{Binding IsEmptyFieldsMessageVisible}"></Label>
             <Label Text="You have entered an impossible value for the amount!" FontSize="Medium" TextColor="Red" IsVisible="{Binding IsWrongAmountEnteredMessageVisible}"></Label>
-            <Label Text="Successfully added a new item!" FontSize="Medium" TextColor="Blue" IsVisible="{Binding IsSuccessfulItemAddedMessageVisible}"></Label>
+            <Label Text="Successfully edited the item!" FontSize="Medium" TextColor="Blue" IsVisible="{Binding IsSuccessfulItemAddedMessageVisible}"></Label>
         </StackLayout>
         
         <StackLayout Orientation="Horizontal">

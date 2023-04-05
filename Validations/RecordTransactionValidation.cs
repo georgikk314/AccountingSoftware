@@ -1,6 +1,7 @@
 ﻿using AccountingSoftware.Data;
 using AccountingSoftware.Data.Tables;
 using AccountingSoftware.ViewModels;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace AccountingSoftware.Validations
 {
     public class RecordTransactionValidation
     {
-        public static void Validation(AccountingSoftwareContext dbContext, AddTransactionViewModel model, int userId)
+        public static async void Validation(AccountingSoftwareContext dbContext, AddTransactionViewModel model, int userId)
         {
             bool isValid = true;
 
@@ -41,7 +42,7 @@ namespace AccountingSoftware.Validations
                     foreach (var transaction in dbContext.Transactions)
                     {
                         
-                        if(transaction.CustomerName == model.VendorOrCustomerName && transaction.UserId == userId) //this validation is only for customers
+                        if(transaction.CustomerId != null && transaction.UserId == userId) //this validation is only for customers
                         {
                             isValid = false;
                             model.IsNonExistingItemMessageVisible = true;
@@ -78,6 +79,7 @@ namespace AccountingSoftware.Validations
                                     {
                                         isValid = true;
                                         model.IsNonExistingVendorMessageVisible = false;
+
                                         dbContext.Add(new Transactions()
                                         {
                                             TransactionDate = model.TransactionDate,
@@ -86,8 +88,8 @@ namespace AccountingSoftware.Validations
                                             Quantity = int.Parse(model.Quantity),
                                             Price = double.Parse(model.Price),
                                             Description = model.Description,
-                                            CustomerName = null,
-                                            VendorName = model.VendorOrCustomerName,
+                                            CustomerId = null,
+                                            VendorId = vendor.VendorId,
                                             UserId = userId
                                         });
 
@@ -124,8 +126,8 @@ namespace AccountingSoftware.Validations
                                             Quantity = int.Parse(model.Quantity),
                                             Price = double.Parse(model.Price),
                                             Description = model.Description,
-                                            CustomerName = model.VendorOrCustomerName,
-                                            VendorName = null,
+                                            CustomerId = customer.CustomerId,
+                                            VendorId = null,
                                             UserId = userId
                                         });
 

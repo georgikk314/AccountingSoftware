@@ -97,7 +97,7 @@ namespace AccountingSoftware.Validations
                     if(customer.UserId == userId && customer.Name == selectedItem.Name)
                     {
                         model.IsClientAddedVisible = true;
-                        //customer.Name = model.Name;
+                        customer.Name = model.Name;
                         customer.Email = model.Email;
                         customer.Address = model.Address;
                         customer.Phone = model.Phone;

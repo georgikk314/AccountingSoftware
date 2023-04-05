@@ -17,8 +17,8 @@ namespace AccountingSoftware.Data.Tables
         public int Quantity { get; set; }
         public double Price { get; set; }
         public string Description { get; set; }
-        public string CustomerName { get; set; }
-        public string VendorName { get; set; }
+        public int? CustomerId { get; set; }
+        public int? VendorId { get; set; }
         public int UserId { get; set; }
     }
 }

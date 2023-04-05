@@ -9,6 +9,7 @@ using AccountingSoftware.Data.Tables;
 using iTextSharp.text.pdf;
 using iTextSharp.text;
 using Microsoft.Maui.Storage;
+using Microsoft.EntityFrameworkCore;
 
 namespace AccountingSoftware.PdfManager
 {
@@ -106,7 +107,8 @@ namespace AccountingSoftware.PdfManager
 
                     foreach (var transaction in transactions)
                     { //which transactions include him from a certain date to another
-                        if(transaction.CustomerName == customerName && StartDate.CompareTo(transaction.TransactionDate) <= 0 &&
+                        
+                        if (transaction.CustomerId == customer.CustomerId && StartDate.CompareTo(transaction.TransactionDate) <= 0 &&
                             EndDate.CompareTo(transaction.TransactionDate) >= 0)
                         {
 

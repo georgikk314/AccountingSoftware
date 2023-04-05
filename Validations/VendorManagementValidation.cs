@@ -94,7 +94,7 @@ namespace AccountingSoftware.Validations
                     if (vendor.UserId == userId && vendor.Name == selectedItem.Name)
                     {
                         model.IsAddedVendorVisible = true;
-                        //vendor.Name = model.Name;
+                        vendor.Name = model.Name;
                         vendor.Email = model.Email;
                         vendor.Address = model.Address;
                         vendor.Phone = model.Phone;
