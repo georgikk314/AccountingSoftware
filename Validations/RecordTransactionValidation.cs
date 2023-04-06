@@ -39,10 +39,9 @@ namespace AccountingSoftware.Validations
                         model.IsWrongAmountEnteredMessageVisible = true;
                     }
 
-                    foreach (var transaction in dbContext.Transactions)
-                    {
+                  
                         
-                        if(transaction.CustomerId != null && transaction.UserId == userId) //this validation is only for customers
+                        if(model.TransactionType == "Income") //this validation is only for customers
                         {
                             isValid = false;
                             model.IsNonExistingItemMessageVisible = true;
@@ -62,7 +61,7 @@ namespace AccountingSoftware.Validations
                                 }
                             }
                         }
-                    }
+                    
 
                     if (isValid)
                     {
