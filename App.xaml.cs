@@ -11,6 +11,6 @@ public partial class App : Application
 		InitializeComponent();
 		var dbContext = new AccountingSoftwareContext();
 		//MainPage = new NavigationPage(new UserAuthentication(dbContext));
-		MainPage = new NavigationPage(new MenuPage(dbContext, 1));
+		MainPage = new NavigationPage(new UserAuthentication(dbContext));
 	}
 }
