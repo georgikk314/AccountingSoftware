@@ -166,5 +166,131 @@ namespace AccountingSoftware.Validations
                 model.IsSuccessfulTransactionMessageVisible = true;
             }
         }
+
+        public static int Validation(IAccountingSoftwareContext dbContext, AddTransactionViewModel model, int userId)
+        {
+            bool isValid = true;
+            int difference = -2;
+            try
+            {
+                if (model.TransactionType.IsNullOrEmpty())
+                {
+                    isValid = false;
+                    model.IsChosenTransactionTypeMessageVisible = true;
+                }
+                else
+                {
+                    if (model.VendorOrCustomerName.IsNullOrEmpty() || model.Price.IsNullOrEmpty() || model.Description.IsNullOrEmpty() || model.ItemName.IsNullOrEmpty() || model.Quantity.IsNullOrEmpty())
+                    {
+                        isValid = false;
+                        model.IsEmptyFieldsMessageVisible = true;
+                    }
+
+                    if (double.Parse(model.Price) <= 0 || int.Parse(model.Quantity) <= 0)
+                    {
+                        isValid = false;
+                        model.IsWrongAmountEnteredMessageVisible = true;
+                    }
+
+
+
+                    if (model.TransactionType == "Income") //this validation is only for customers
+                    {
+                        isValid = false;
+                        model.IsNonExistingItemMessageVisible = true;
+
+                        foreach (var item in dbContext.Inventory)
+                        {
+                            if (item.ItemName == model.ItemName) //wanted item is in the inventory
+                            {
+                                isValid = true;
+                                model.IsNonExistingItemMessageVisible = false;
+                                if (item.QuantityInStock < int.Parse(model.Quantity)) //if we don't have enough quantity
+                                {
+                                    model.IsInvalidQuantityMessageVisible = true;
+                                    isValid = false;
+                                }
+                                break;
+                            }
+                        }
+                    }
+
+
+                    if (isValid)
+                    {
+
+                        switch (model.TransactionType)
+                        {
+                            case "Expense":
+
+                                isValid = false;
+                                model.IsNonExistingVendorMessageVisible = true;
+                                foreach (var vendor in dbContext.Vendors) //find the wanted vendor
+                                {
+                                    if (vendor.Name == model.VendorOrCustomerName && vendor.UserId == userId)
+                                    {
+                                        isValid = true;
+                                        model.IsNonExistingVendorMessageVisible = false;
+                                        
+                                        
+                                    }
+                                }
+
+                                break;
+
+                            case "Income":
+
+                                isValid = false;
+                                model.IsNonExistingCustomerMessageVisible = true;
+                                foreach (var customer in dbContext.Customers)
+                                {
+                                    if (customer.Name == model.VendorOrCustomerName && customer.UserId == userId)
+                                    {
+                                        isValid = true;
+                                        model.IsNonExistingCustomerMessageVisible = false;
+                                        
+
+                                        foreach (var item in dbContext.Inventory)
+                                        {
+                                            if (item.ItemName == model.ItemName)
+                                            {
+                                                if (item.QuantityInStock == int.Parse(model.Quantity))
+                                                {
+                                                    difference = 0;
+                                                }
+                                                else
+                                                {
+                                                    item.QuantityInStock = item.QuantityInStock - int.Parse(model.Quantity);
+                                                    difference = item.QuantityInStock;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+
+                                break;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message == "Input string was not in a correct format.")
+                {
+                    model.IsWrongAmountEnteredMessageVisible = true;
+                    isValid = false;
+                }
+            }
+
+            if (isValid)
+            {
+                model.IsSuccessfulTransactionMessageVisible = true;
+                return difference;
+            }
+            else
+            {
+                return -1;
+            }
+        }
     }
 }

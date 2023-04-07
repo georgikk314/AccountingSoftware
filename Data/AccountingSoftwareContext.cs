@@ -8,13 +8,15 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AccountingSoftware.Data
 {
-    public class AccountingSoftwareContext : DbContext
+    public class AccountingSoftwareContext : DbContext, IAccountingSoftwareContext
     {
-        
+        public AccountingSoftwareContext(DbContextOptions<AccountingSoftwareContext> options)
+            : base(options) { }
+
         public AccountingSoftwareContext()
         {
             SQLitePCL.Batteries_V2.Init();
-            this.Database.EnsureCreated();
+            //this.Database.EnsureCreated();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -30,6 +32,5 @@ namespace AccountingSoftware.Data
         public DbSet<Vendors> Vendors { get; set; }
         public DbSet<Transactions> Transactions { get; set; }
         public DbSet<Inventory> Inventory { get; set; }
-
     }
 }

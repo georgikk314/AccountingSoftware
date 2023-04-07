@@ -1,8 +1,10 @@
 ﻿using AccountingSoftware.Data;
+using AccountingSoftware.Data.Tables;
 using AccountingSoftware.Validations;
 using Microsoft.Maui.Graphics.Text;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -145,6 +147,9 @@ namespace AccountingSoftware.ViewModels
             _dbContext = dbContext;
             _userId = userId;
         }
+
+        public AddTransactionViewModel() { }
+
 
         public ICommand OnSaveTransactionClicked => new Command(async () =>
         {

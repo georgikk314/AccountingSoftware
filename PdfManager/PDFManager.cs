@@ -72,9 +72,8 @@ namespace AccountingSoftware.PdfManager
             {
                 if(user.UserId == userId)
                 {
-                    Paragraph pSellerName = new Paragraph($"Seller name: {user.Username}");
+                    Paragraph pSellerName = new Paragraph($"Seller name: {user.FirstName} {user.SecondName} {user.LastName}");
                     doc.Add(pSellerName);
-                    //Paragraph p2 = new Paragraph() bulstat
                 }
             }
             
