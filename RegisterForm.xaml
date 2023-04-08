@@ -59,6 +59,8 @@
 
             <!-- 3rd for invalid email -->
             <Label x:Name="ErrorMessageForWrongEmail" Text="You have entered a non-existing email address!" TextColor="Red" IsVisible="{Binding IsNotCorrectEmailMessageVisible}"></Label>
+
+            <Label Text="Successfully registered a new account!" FontSize="Medium" TextColor="Blue" IsVisible="{Binding IsSuccessfulRegisterMessageVisible}"></Label>
         </StackLayout>
 
         <!-- LoginForm HyperLink -->

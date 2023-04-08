@@ -25,6 +25,7 @@ namespace AccountingSoftware.ViewModels
         public bool IsInvalidEntriesMessageVisible { get; set; }
         public bool IsNotMatchingPasswordsMessageVisible { get; set; }
         public bool IsNotCorrectEmailMessageVisible { get; set; }
+        public bool IsSuccessfulRegisterMessageVisible { get; set; }
 
         private readonly AccountingSoftwareContext _dbContext;
 

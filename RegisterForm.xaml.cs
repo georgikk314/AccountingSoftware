@@ -51,6 +51,17 @@ public partial class RegisterForm : ContentPage
         }
     }
 
+    private bool _isSuccessfulRegisterMessageVisible = false;
+    public bool IsSuccessfulRegisterMessageVisible
+    {
+        get { return _isSuccessfulRegisterMessageVisible; }
+        set
+        {
+            _isSuccessfulRegisterMessageVisible = value;
+            OnPropertyChanged(nameof(IsSuccessfulRegisterMessageVisible));
+        }
+    }
+
     private readonly AccountingSoftwareContext _dbContext;
     private readonly AddUsersViewModel _model;
     public RegisterForm(AccountingSoftwareContext dbContext, AddUsersViewModel model)

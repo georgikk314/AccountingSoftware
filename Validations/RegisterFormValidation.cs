@@ -78,6 +78,8 @@ namespace AccountingSoftware.Validations
                     LastName = model.LastName
                 });
 
+                model.IsSuccessfulRegisterMessageVisible = true;
+
                 dbContext.SaveChanges();
             }
             
